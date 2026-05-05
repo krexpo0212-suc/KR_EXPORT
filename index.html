@@ -793,8 +793,8 @@ footer{
           <div style="margin-bottom:12px">
             <label style="font-size:12px;color:#555;font-weight:500;display:block;margin-bottom:8px">Product Photo</label>
             <label for="p_photo" id="photoLabel" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:2px dashed #c8e6cf;border-radius:8px;padding:20px;cursor:pointer;background:#f9fdf9;transition:border .2s">
-              <span style="font-size:28px">📷</span>
-              <span style="font-size:13px;color:#888;text-align:center">Click to upload photo<br><span style="font-size:11px">JPG, PNG, WEBP — max 5MB</span></span>
+              <span class="upload-icon" style="font-size:28px">📷</span>
+              <span class="upload-text" style="font-size:13px;color:#888;text-align:center">Click to upload photo<br><span style="font-size:11px">JPG, PNG, WEBP — max 5MB</span></span>
               <img id="p_photo_preview" src="" style="display:none;max-height:120px;border-radius:6px;object-fit:cover;max-width:100%">
             </label>
             <input type="file" id="p_photo" accept="image/*" style="display:none" onchange="previewPhoto(this)">
@@ -817,231 +817,341 @@ footer{
 <div class="toast" id="toast"></div>
 
 <script>
-/* ── Products data ── */
-var products=[
-  {id:1,name:'Moringa Leaf Powder',emoji:'🌿',tag:'Powder',desc:'100% pure dried Moringa leaf powder. Rich in vitamins A, C, E, iron and protein. Suitable for food, beverage and supplement manufacturing.',cert:'FSSAI · Lab Tested'},
-  {id:2,name:'Moringa Dried Leaves',emoji:'🍃',tag:'Dried Leaves',desc:'Sun-dried or shade-dried Moringa leaves retaining maximum nutritional content. Popular for herbal teas, culinary use and nutraceuticals.',cert:'Natural · Pesticide Screened'},
-  {id:3,name:'Moringa Seeds',emoji:'🫘',tag:'Seeds',desc:'Export-grade Moringa seeds, cleaned and size-sorted. Used for water purification, oil pressing and agricultural planting.',cert:'Farm Grade · Sorted'},
-  {id:4,name:'Moringa Seed Oil',emoji:'💧',tag:'Oil',desc:'Cold-pressed Moringa seed oil (Ben Oil). Premium purity for cosmetic, culinary and pharmaceutical applications.',cert:'Cold Pressed · Pure'},
-  {id:5,name:'Moringa Seed Cake',emoji:'🟤',tag:'By-product',desc:'Post-extraction Moringa seed cake. Protein-rich and suitable for animal feed and organic fertilizer applications.',cert:'Bulk · By-product'},
-  {id:6,name:'OEM / Private Label',emoji:'💊',tag:'Private Label',desc:'White-label Moringa capsule and product manufacturing available for supplement brands entering UAE and Singapore markets.',cert:'Custom Label · Flexible MOQ'}
+/* ════════════════════════════════════════
+   STORAGE HELPERS — everything saved to
+   localStorage so it survives refresh
+════════════════════════════════════════ */
+var LS = {
+  get: function(k, def){ try{ var v=localStorage.getItem(k); return v!==null?JSON.parse(v):def; }catch(e){ return def; } },
+  set: function(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){ showToast('Storage full — try removing large photos.'); } }
+};
+
+/* ── Default products (used only on first ever load) ── */
+var DEFAULT_PRODUCTS = [
+  {id:1,name:'Moringa Leaf Powder',emoji:'🌿',tag:'Powder',photo:'',desc:'100% pure dried Moringa leaf powder. Rich in vitamins A, C, E, iron and protein. Suitable for food, beverage and supplement manufacturing.',cert:'FSSAI · Lab Tested'},
+  {id:2,name:'Moringa Dried Leaves',emoji:'🍃',tag:'Dried Leaves',photo:'',desc:'Sun-dried or shade-dried Moringa leaves retaining maximum nutritional content. Popular for herbal teas, culinary use and nutraceuticals.',cert:'Natural · Pesticide Screened'},
+  {id:3,name:'Moringa Seeds',emoji:'🫘',tag:'Seeds',photo:'',desc:'Export-grade Moringa seeds, cleaned and size-sorted. Used for water purification, oil pressing and agricultural planting.',cert:'Farm Grade · Sorted'},
+  {id:4,name:'Moringa Seed Oil',emoji:'💧',tag:'Oil',photo:'',desc:'Cold-pressed Moringa seed oil (Ben Oil). Premium purity for cosmetic, culinary and pharmaceutical applications.',cert:'Cold Pressed · Pure'},
+  {id:5,name:'Moringa Seed Cake',emoji:'🟤',tag:'By-product',photo:'',desc:'Post-extraction Moringa seed cake. Protein-rich and suitable for animal feed and organic fertilizer applications.',cert:'Bulk · By-product'},
+  {id:6,name:'OEM / Private Label',emoji:'💊',tag:'Private Label',photo:'',desc:'White-label Moringa capsule and product manufacturing for supplement brands entering UAE and Singapore markets.',cert:'Custom Label · Flexible MOQ'}
 ];
 
+/* ── Load all saved state on startup ── */
+var products  = LS.get('re_products', DEFAULT_PRODUCTS);
+var ADMIN_PW  = LS.get('re_pw', 'Sangeetha@29');
+var savedContact = LS.get('re_contact', {email:'rokisenterprises@gmail.com', phone:'+91 76958 61063', location:'Tamil Nadu, India', wa:'917695861063'});
+var savedBio  = LS.get('re_bio', {owner:'Meenal R', bio:'Rokis Enterprise is a GST and PAN registered proprietorship under Meenal R, operating in full compliance with Indian export regulations. Rokis Enterprise exports premium Moringa products directly to buyers in UAE and Singapore — built on transparency, compliance, and long-term buyer relationships.'});
+
+/* ── Apply saved contact on page load ── */
+function applyContact(){
+  document.getElementById('contactEmail').textContent   = savedContact.email;
+  document.getElementById('contactPhone').textContent   = savedContact.phone;
+  document.getElementById('contactLocation').textContent = savedContact.location;
+  if(savedContact.wa) document.getElementById('waBtn').href = 'https://wa.me/'+savedContact.wa;
+  /* Pre-fill admin inputs */
+  document.getElementById('a_email').value    = savedContact.email;
+  document.getElementById('a_phone').value    = savedContact.phone;
+  document.getElementById('a_location').value = savedContact.location;
+  document.getElementById('a_wa').value       = savedContact.wa||'';
+}
+
+/* ── Apply saved bio on page load ── */
+function applyBio(){
+  document.getElementById('ownerName').textContent = savedBio.owner;
+  document.getElementById('ownerBio').textContent  = savedBio.bio;
+  document.getElementById('a_owner').value = savedBio.owner;
+  document.getElementById('a_bio').value   = savedBio.bio;
+}
+
+/* ════════════════════════════════════════
+   PRODUCT RENDERING
+════════════════════════════════════════ */
 function renderProducts(){
-  var g=document.getElementById('productGrid');
-  g.innerHTML=products.map(function(p){
-    var imgHtml = p.photo
+  var g = document.getElementById('productGrid');
+  g.innerHTML = products.map(function(p){
+    var imgHtml = (p.photo && p.photo.length > 0)
       ? '<div class="pcard-photo-wrap"><img class="pcard-photo" src="'+p.photo+'" alt="'+p.name+'" loading="lazy"></div>'
-      : '<div class="pcard-photo-wrap" style="display:flex;align-items:center;justify-content:center;background:var(--green-pale);height:200px"><span style="font-size:48px">'+p.emoji+'</span></div>';
-    return '<div class="pcard" tabindex="0">'+imgHtml+'<div class="pcard-body"><span class="pcard-tag">'+p.tag+'</span><h3>'+p.name+'</h3><p>'+p.desc+'</p><div class="pcard-foot"><span class="pcard-cert">'+p.cert+'</span><a class="pcard-enq" href="#contact">Enquire →</a></div></div></div>';
+      : '<div class="pcard-photo-wrap" style="display:flex;align-items:center;justify-content:center;background:var(--green-pale);height:200px"><span style="font-size:56px">'+p.emoji+'</span></div>';
+    return '<div class="pcard" tabindex="0">'+imgHtml
+      +'<div class="pcard-body">'
+      +'<span class="pcard-tag">'+p.tag+'</span>'
+      +'<h3>'+p.name+'</h3>'
+      +'<p>'+p.desc+'</p>'
+      +'<div class="pcard-foot"><span class="pcard-cert">'+p.cert+'</span>'
+      +'<a class="pcard-enq" href="#contact">Enquire →</a></div>'
+      +'</div></div>';
   }).join('');
-  var s=document.getElementById('cProduct');
-  var v=s.value;
-  s.innerHTML='<option value="">Product Interested In</option>'+products.map(function(p){return '<option>'+p.name+'</option>';}).join('');
-  if(v)s.value=v;
+  /* Update enquiry dropdown */
+  var s = document.getElementById('cProduct');
+  var v = s.value;
+  s.innerHTML = '<option value="">Product Interested In</option>'
+    + products.map(function(p){ return '<option>'+p.name+'</option>'; }).join('');
+  if(v) s.value = v;
   renderAdminList();
 }
 
 function renderAdminList(){
-  var l=document.getElementById('adminProductList');
-  if(!l)return;
-  l.innerHTML=products.map(function(p){
-    var thumb=p.photo?'<img src="'+p.photo+'" style="width:36px;height:36px;border-radius:4px;object-fit:cover;flex-shrink:0">':'<span style="font-size:22px">'+p.emoji+'</span>';
-    return '<div class="p-item">'+thumb+'<span style="flex:1">'+p.name+'</span><span class="p-sm-tag">'+p.tag+'</span><button class="del-btn" onclick="delProduct('+p.id+')">Delete</button></div>';
+  var l = document.getElementById('adminProductList');
+  if(!l) return;
+  if(products.length === 0){
+    l.innerHTML = '<p style="font-size:13px;color:#aaa;padding:8px 0">No products yet. Add one below.</p>';
+    return;
+  }
+  l.innerHTML = products.map(function(p){
+    var thumb = (p.photo && p.photo.length > 0)
+      ? '<img src="'+p.photo+'" style="width:40px;height:40px;border-radius:4px;object-fit:cover;flex-shrink:0">'
+      : '<div style="width:40px;height:40px;border-radius:4px;background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">'+p.emoji+'</div>';
+    return '<div class="p-item">'+thumb
+      +'<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+p.name+'</span>'
+      +'<span class="p-sm-tag">'+p.tag+'</span>'
+      +'<button class="del-btn" onclick="delProduct('+p.id+')">Delete</button></div>';
   }).join('');
 }
 
+/* ════════════════════════════════════════
+   PHOTO UPLOAD PREVIEW
+════════════════════════════════════════ */
 function previewPhoto(input){
-  var file=input.files[0];
-  if(!file)return;
-  if(file.size>5*1024*1024){showToast('Photo too large. Max 5MB.');input.value='';return;}
-  var reader=new FileReader();
-  reader.onload=function(e){
-    var prev=document.getElementById('p_photo_preview');
-    prev.src=e.target.result;
-    prev.style.display='block';
-    var lbl=document.getElementById('photoLabel');
-    lbl.querySelector('span:nth-child(1)').style.display='none';
-    lbl.querySelector('span:nth-child(2)').style.display='none';
-    lbl.style.borderColor='#1a5c2a';
-    lbl.style.background='#f0faf3';
+  var file = input.files[0];
+  if(!file) return;
+  if(file.size > 5*1024*1024){ showToast('Photo too large. Max 5MB.'); input.value=''; return; }
+  var reader = new FileReader();
+  reader.onload = function(e){
+    var prev = document.getElementById('p_photo_preview');
+    prev.src = e.target.result;
+    prev.style.display = 'block';
+    var lbl = document.getElementById('photoLabel');
+    lbl.querySelector('.upload-icon').style.display = 'none';
+    lbl.querySelector('.upload-text').style.display = 'none';
+    lbl.style.borderColor = '#1a5c2a';
+    lbl.style.background  = '#f0faf3';
   };
   reader.readAsDataURL(file);
 }
 
+/* ════════════════════════════════════════
+   PRODUCT CRUD
+════════════════════════════════════════ */
 function delProduct(id){
-  products=products.filter(function(p){return p.id!==id;});
-  renderProducts();showToast('Product removed.');
+  products = products.filter(function(p){ return p.id !== id; });
+  LS.set('re_products', products);
+  renderProducts();
+  showToast('Product removed.');
 }
 
 function addProduct(){
-  var n=document.getElementById('p_name').value.trim();
-  if(!n){showToast('Please enter a product name.');return;}
-  var photoSrc='';
-  var prev=document.getElementById('p_photo_preview');
-  if(prev.src&&prev.style.display!=='none')photoSrc=prev.src;
+  var n = document.getElementById('p_name').value.trim();
+  if(!n){ showToast('Please enter a product name.'); return; }
+
+  /* Grab photo — base64 data URL stored directly */
+  var photoSrc = '';
+  var prev = document.getElementById('p_photo_preview');
+  if(prev && prev.src && prev.style.display !== 'none' && prev.src.indexOf('data:') === 0){
+    photoSrc = prev.src;
+  }
+
   products.push({
-    id:Date.now(),name:n,
+    id:   Date.now(),
+    name: n,
     emoji:'🌿',
-    tag:document.getElementById('p_tag').value||'Product',
-    desc:document.getElementById('p_desc').value||'',
-    cert:document.getElementById('p_cert').value||'',
-    photo:photoSrc
+    tag:  document.getElementById('p_tag').value.trim()  || 'Product',
+    desc: document.getElementById('p_desc').value.trim() || '',
+    cert: document.getElementById('p_cert').value.trim() || '',
+    photo: photoSrc
   });
-  document.getElementById('p_name').value='';
-  document.getElementById('p_desc').value='';
-  document.getElementById('p_tag').value='';
-  document.getElementById('p_cert').value='';
-  document.getElementById('p_photo').value='';
-  prev.src='';prev.style.display='none';
-  var lbl=document.getElementById('photoLabel');
-  lbl.querySelectorAll('span').forEach(function(s){s.style.display='';});
-  lbl.style.borderColor='#c8e6cf';lbl.style.background='#f9fdf9';
-  renderProducts();showToast('✓ Product added!');
+
+  /* Save to localStorage */
+  LS.set('re_products', products);
+
+  /* Reset form */
+  ['p_name','p_desc','p_tag','p_cert'].forEach(function(id){ document.getElementById(id).value=''; });
+  document.getElementById('p_photo').value = '';
+  if(prev){ prev.src=''; prev.style.display='none'; }
+  var lbl = document.getElementById('photoLabel');
+  if(lbl){
+    var ic = lbl.querySelector('.upload-icon');
+    var tx = lbl.querySelector('.upload-text');
+    if(ic) ic.style.display = '';
+    if(tx) tx.style.display = '';
+    lbl.style.borderColor = '#c8e6cf';
+    lbl.style.background  = '#f9fdf9';
+  }
+
+  renderProducts();
+  showToast('✓ Product added and saved!');
 }
 
+/* ════════════════════════════════════════
+   CONTACT & BIO SAVE
+════════════════════════════════════════ */
 function saveContact(){
-  document.getElementById('contactEmail').textContent=document.getElementById('a_email').value;
-  document.getElementById('contactPhone').textContent=document.getElementById('a_phone').value;
-  document.getElementById('contactLocation').textContent=document.getElementById('a_location').value;
-  var waNum=document.getElementById('a_wa').value.trim().replace(/[^0-9+]/g,'');
-  if(waNum){document.getElementById('waBtn').href='https://wa.me/'+waNum.replace('+','');}
-  showToast('✓ Contact info updated!');
+  savedContact = {
+    email:    document.getElementById('a_email').value.trim(),
+    phone:    document.getElementById('a_phone').value.trim(),
+    location: document.getElementById('a_location').value.trim(),
+    wa:       document.getElementById('a_wa').value.trim().replace(/[^0-9]/g,'')
+  };
+  LS.set('re_contact', savedContact);
+  applyContact();
+  showToast('✓ Contact info saved!');
 }
 
 function saveBio(){
-  document.getElementById('ownerName').textContent=document.getElementById('a_owner').value;
-  document.getElementById('ownerBio').textContent=document.getElementById('a_bio').value;
-  showToast('✓ Bio updated!');
+  savedBio = {
+    owner: document.getElementById('a_owner').value.trim(),
+    bio:   document.getElementById('a_bio').value.trim()
+  };
+  LS.set('re_bio', savedBio);
+  applyBio();
+  showToast('✓ Bio saved!');
 }
 
+/* ════════════════════════════════════════
+   PASSWORD CHANGE
+════════════════════════════════════════ */
 function changePassword(){
-  var np=document.getElementById('pw_new').value;
-  var cp=document.getElementById('pw_confirm').value;
-  if(!np){showToast('Please enter a new password.');return;}
-  if(np.length<6){showToast('Password must be at least 6 characters.');return;}
-  if(np!==cp){showToast('Passwords do not match.');return;}
-  ADMIN_PW=np;
-  document.getElementById('pw_new').value='';
-  document.getElementById('pw_confirm').value='';
-  showToast('✓ Password updated successfully!');
+  var np = document.getElementById('pw_new').value;
+  var cp = document.getElementById('pw_confirm').value;
+  if(!np){ showToast('Please enter a new password.'); return; }
+  if(np.length < 6){ showToast('Password must be at least 6 characters.'); return; }
+  if(np !== cp){ showToast('Passwords do not match.'); return; }
+  ADMIN_PW = np;
+  LS.set('re_pw', ADMIN_PW);
+  document.getElementById('pw_new').value = '';
+  document.getElementById('pw_confirm').value = '';
+  showToast('✓ Password updated and saved!');
 }
 
+/* ════════════════════════════════════════
+   ENQUIRY FORM
+════════════════════════════════════════ */
 function submitEnquiry(){
-  var n=document.getElementById('cName').value.trim();
-  var e=document.getElementById('cEmail').value.trim();
-  if(!n||!e){showToast('Please fill Name and Email.');return;}
+  var n = document.getElementById('cName').value.trim();
+  var e = document.getElementById('cEmail').value.trim();
+  if(!n || !e){ showToast('Please fill Name and Email.'); return; }
   showToast('✓ Enquiry sent! We reply within 24 hours.');
-  ['cName','cCompany','cEmail','cPhone','cQty','cMsg'].forEach(function(id){document.getElementById(id).value='';});
-  document.getElementById('cCountry').selectedIndex=0;
-  document.getElementById('cProduct').selectedIndex=0;
+  ['cName','cCompany','cEmail','cPhone','cQty','cMsg'].forEach(function(id){ document.getElementById(id).value=''; });
+  document.getElementById('cCountry').selectedIndex = 0;
+  document.getElementById('cProduct').selectedIndex = 0;
 }
 
+/* ════════════════════════════════════════
+   TOAST
+════════════════════════════════════════ */
 function showToast(msg){
-  var t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
-  setTimeout(function(){t.classList.remove('show');},3200);
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 3400);
 }
 
-/* Nav toggle */
+/* ════════════════════════════════════════
+   NAV TOGGLE
+════════════════════════════════════════ */
 function toggleMenu(){
-  var m=document.getElementById('mobileMenu');
-  var h=document.getElementById('hamBtn');
-  m.classList.toggle('open');h.classList.toggle('open');
-  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+  var m = document.getElementById('mobileMenu');
+  var h = document.getElementById('hamBtn');
+  m.classList.toggle('open');
+  h.classList.toggle('open');
+  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
 }
 function closeMenu(){
   document.getElementById('mobileMenu').classList.remove('open');
   document.getElementById('hamBtn').classList.remove('open');
-  document.body.style.overflow='';
+  document.body.style.overflow = '';
 }
 
-/* ── Admin password gate ── */
-var ADMIN_PW='Sangeetha@29';
+/* ════════════════════════════════════════
+   ADMIN PASSWORD GATE
+════════════════════════════════════════ */
 function openAdmin(){
-  document.getElementById('pwInput').value='';
-  document.getElementById('pwErr').textContent='';
-  document.getElementById('pwGate').style.display='flex';
-  setTimeout(function(){document.getElementById('pwInput').focus();},100);
+  document.getElementById('pwInput').value = '';
+  document.getElementById('pwErr').textContent = '';
+  document.getElementById('pwGate').style.display = 'flex';
+  setTimeout(function(){ document.getElementById('pwInput').focus(); }, 100);
 }
-function closePwGate(){document.getElementById('pwGate').style.display='none';}
+function closePwGate(){ document.getElementById('pwGate').style.display = 'none'; }
 function checkPw(){
-  var val=document.getElementById('pwInput').value;
-  if(val===ADMIN_PW){
-    document.getElementById('pwGate').style.display='none';
+  var val = document.getElementById('pwInput').value;
+  if(val === ADMIN_PW){
+    document.getElementById('pwGate').style.display = 'none';
     document.getElementById('adminOverlay').classList.add('active');
-    document.getElementById('pwInput').value='';
+    document.getElementById('pwInput').value = '';
   } else {
-    document.getElementById('pwErr').textContent='Incorrect password. Try again.';
-    document.getElementById('pwInput').value='';
+    document.getElementById('pwErr').textContent = 'Incorrect password. Try again.';
+    document.getElementById('pwInput').value = '';
     document.getElementById('pwInput').focus();
   }
 }
-function closeAdmin(){document.getElementById('adminOverlay').classList.remove('active');}
-document.getElementById('adminOverlay').addEventListener('click',function(e){if(e.target===this)closeAdmin();});
+function closeAdmin(){ document.getElementById('adminOverlay').classList.remove('active'); }
+document.getElementById('adminOverlay').addEventListener('click', function(e){ if(e.target===this) closeAdmin(); });
 
-/* ── OTP Forgot Password ── */
-var generatedOtp='';
+/* ════════════════════════════════════════
+   OTP FORGOT PASSWORD
+════════════════════════════════════════ */
+var generatedOtp = '';
 function showForgot(){
-  document.getElementById('pwGate').style.display='none';
-  document.getElementById('otpGate').style.display='flex';
-  document.getElementById('otpStep1').style.display='block';
-  document.getElementById('otpStep2').style.display='none';
-  document.getElementById('otpSendMsg').textContent='';
-  document.getElementById('otpInput') && (document.getElementById('otpInput').value='');
-  document.getElementById('otp_newpw') && (document.getElementById('otp_newpw').value='');
+  document.getElementById('pwGate').style.display = 'none';
+  document.getElementById('otpGate').style.display = 'flex';
+  document.getElementById('otpStep1').style.display = 'block';
+  document.getElementById('otpStep2').style.display = 'none';
+  document.getElementById('otpSendMsg').textContent = '';
+  document.getElementById('otpInput').value = '';
+  document.getElementById('otp_newpw').value = '';
+  document.getElementById('otpErr').textContent = '';
 }
 function closeOtpGate(){
-  document.getElementById('otpGate').style.display='none';
-  generatedOtp='';
+  document.getElementById('otpGate').style.display = 'none';
+  generatedOtp = '';
 }
 function sendOtp(){
-  generatedOtp=String(Math.floor(100000+Math.random()*900000));
-  var btn=document.querySelector('#otpStep1 button');
-  btn.textContent='Sending…';btn.disabled=true;
-  // Send via fast2sms (free tier — works with Indian numbers)
-  fetch('https://www.fast2sms.com/dev/bulkV2?authorization=YOUR_FAST2SMS_API_KEY&variables_values='+generatedOtp+'&route=otp&numbers=7695861063',{method:'GET'})
-  .then(function(r){return r.json();})
+  generatedOtp = String(Math.floor(100000 + Math.random()*900000));
+  var btn = document.querySelector('#otpStep1 button');
+  btn.textContent = 'Sending…'; btn.disabled = true;
+  fetch('https://www.fast2sms.com/dev/bulkV2?authorization=YOUR_FAST2SMS_API_KEY&variables_values='+generatedOtp+'&route=otp&numbers=7695861063', {method:'GET'})
+  .then(function(r){ return r.json(); })
   .then(function(d){
-    btn.textContent='Send OTP →';btn.disabled=false;
+    btn.textContent = 'Send OTP →'; btn.disabled = false;
     if(d.return){
-      document.getElementById('otpSendMsg').textContent='✓ OTP sent to +91 76958 61063';
-      document.getElementById('otpStep1').style.display='none';
-      document.getElementById('otpStep2').style.display='block';
+      document.getElementById('otpSendMsg').textContent = '✓ OTP sent to +91 76958 61063';
     } else {
-      // Fallback: show OTP in toast for testing (remove in production)
-      document.getElementById('otpSendMsg').textContent='SMS service not configured. OTP: '+generatedOtp;
-      setTimeout(function(){
-        document.getElementById('otpStep1').style.display='none';
-        document.getElementById('otpStep2').style.display='block';
-      },2000);
+      document.getElementById('otpSendMsg').textContent = 'SMS not configured yet. Your OTP: '+generatedOtp;
     }
+    setTimeout(function(){
+      document.getElementById('otpStep1').style.display = 'none';
+      document.getElementById('otpStep2').style.display = 'block';
+    }, 1800);
   })
   .catch(function(){
-    btn.textContent='Send OTP →';btn.disabled=false;
-    // Fallback: still allow OTP entry
-    document.getElementById('otpSendMsg').textContent='OTP generated. Check your phone or use: '+generatedOtp;
+    btn.textContent = 'Send OTP →'; btn.disabled = false;
+    document.getElementById('otpSendMsg').textContent = 'SMS not configured yet. Your OTP: '+generatedOtp;
     setTimeout(function(){
-      document.getElementById('otpStep1').style.display='none';
-      document.getElementById('otpStep2').style.display='block';
-    },2000);
+      document.getElementById('otpStep1').style.display = 'none';
+      document.getElementById('otpStep2').style.display = 'block';
+    }, 1800);
   });
 }
 function verifyOtp(){
-  var entered=document.getElementById('otpInput').value.trim();
-  var newpw=document.getElementById('otp_newpw').value;
-  if(entered!==generatedOtp){
-    document.getElementById('otpErr').textContent='Wrong OTP. Please try again.';return;
+  var entered = document.getElementById('otpInput').value.trim();
+  var newpw   = document.getElementById('otp_newpw').value;
+  if(entered !== generatedOtp){
+    document.getElementById('otpErr').textContent = 'Wrong OTP. Please try again.'; return;
   }
-  if(!newpw||newpw.length<6){
-    document.getElementById('otpErr').textContent='Enter a new password (min 6 characters).';return;
+  if(!newpw || newpw.length < 6){
+    document.getElementById('otpErr').textContent = 'Enter a new password (min 6 characters).'; return;
   }
-  ADMIN_PW=newpw;
-  generatedOtp='';
+  ADMIN_PW = newpw;
+  LS.set('re_pw', ADMIN_PW);
+  generatedOtp = '';
   closeOtpGate();
-  showToast('✓ Password reset successfully! Login with your new password.');
+  showToast('✓ Password reset and saved! Login with your new password.');
 }
 
+/* ════════════════════════════════════════
+   INIT — run on page load
+════════════════════════════════════════ */
+applyContact();
+applyBio();
 renderProducts();
 </script>
 </body>
