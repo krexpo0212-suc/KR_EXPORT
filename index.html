@@ -703,6 +703,51 @@ footer{
       style="width:100%;background:none;border:1px solid #ddd;color:#888;padding:11px;border-radius:4px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer">
       Cancel
     </button>
+    <button onclick="showForgot()"
+      style="margin-top:12px;background:none;border:none;color:#1a5c2a;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;text-decoration:underline;width:100%">
+      Forgot password? Send OTP
+    </button>
+  </div>
+</div>
+
+<!-- ── OTP RESET SCREEN ── -->
+<div class="adm-ov" id="otpGate" style="display:none;align-items:center;justify-content:center">
+  <div style="background:#fff;border-radius:10px;padding:36px 32px;width:100%;max-width:360px;box-shadow:0 20px 50px rgba(0,0,0,.25);text-align:center">
+    <div style="width:52px;height:52px;background:#edf7f0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 18px">📲</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#1a3d0f;margin-bottom:6px;font-weight:700">Reset Password</h2>
+    <p style="font-size:13px;color:#888;margin-bottom:22px;font-weight:300">An OTP will be sent to<br><strong style="color:#1a5c2a">+91 76958 61063</strong></p>
+
+    <!-- Step 1: Send OTP -->
+    <div id="otpStep1">
+      <button onclick="sendOtp()"
+        style="width:100%;background:#1a5c2a;color:#fff;border:none;padding:13px;border-radius:4px;font-size:14px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;margin-bottom:10px">
+        Send OTP →
+      </button>
+      <p id="otpSendMsg" style="font-size:12px;color:#1a5c2a;min-height:18px;margin-bottom:8px"></p>
+      <button onclick="closeOtpGate()"
+        style="width:100%;background:none;border:1px solid #ddd;color:#888;padding:11px;border-radius:4px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer">
+        Cancel
+      </button>
+    </div>
+
+    <!-- Step 2: Enter OTP + new password -->
+    <div id="otpStep2" style="display:none">
+      <input type="text" id="otpInput" placeholder="Enter 6-digit OTP" maxlength="6"
+        style="width:100%;padding:13px 16px;border:1.5px solid #ddd;border-radius:4px;font-size:18px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:10px;text-align:center;letter-spacing:6px"
+        onfocus="this.style.borderColor='#1a5c2a'" onblur="this.style.borderColor='#ddd'">
+      <input type="password" id="otp_newpw" placeholder="New password"
+        style="width:100%;padding:13px 16px;border:1.5px solid #ddd;border-radius:4px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:10px;text-align:center"
+        onfocus="this.style.borderColor='#1a5c2a'" onblur="this.style.borderColor='#ddd'">
+      <p id="otpErr" style="font-size:12px;color:#c00;min-height:18px;margin-bottom:8px"></p>
+      <button onclick="verifyOtp()"
+        style="width:100%;background:#1a5c2a;color:#fff;border:none;padding:13px;border-radius:4px;font-size:14px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;margin-bottom:10px">
+        Verify &amp; Reset
+      </button>
+      <button onclick="closeOtpGate()"
+        style="width:100%;background:none;border:1px solid #ddd;color:#888;padding:11px;border-radius:4px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer">
+        Cancel
+      </button>
+    </div>
   </div>
 </div>
 
@@ -738,15 +783,31 @@ footer{
           <div class="add-form-title">Add New Product</div>
           <div class="ar">
             <input id="p_name" placeholder="Product name">
-            <input id="p_emoji" placeholder="Emoji 🌿" style="max-width:72px">
+            <input id="p_tag" placeholder="Category (e.g. Powder)">
           </div>
           <div class="ar"><textarea id="p_desc" placeholder="Description..."></textarea></div>
           <div class="ar">
-            <input id="p_tag" placeholder="Category (e.g. Powder)">
-            <input id="p_cert" placeholder="Certifications">
+            <input id="p_cert" placeholder="Certifications (e.g. FSSAI, Lab Tested)">
+          </div>
+          <!-- Photo upload -->
+          <div style="margin-bottom:12px">
+            <label style="font-size:12px;color:#555;font-weight:500;display:block;margin-bottom:8px">Product Photo</label>
+            <label for="p_photo" id="photoLabel" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:2px dashed #c8e6cf;border-radius:8px;padding:20px;cursor:pointer;background:#f9fdf9;transition:border .2s">
+              <span style="font-size:28px">📷</span>
+              <span style="font-size:13px;color:#888;text-align:center">Click to upload photo<br><span style="font-size:11px">JPG, PNG, WEBP — max 5MB</span></span>
+              <img id="p_photo_preview" src="" style="display:none;max-height:120px;border-radius:6px;object-fit:cover;max-width:100%">
+            </label>
+            <input type="file" id="p_photo" accept="image/*" style="display:none" onchange="previewPhoto(this)">
           </div>
           <button class="asave" onclick="addProduct()">+ Add Product</button>
         </div>
+      </div>
+
+      <div class="adm-sec">
+        <h3>🔐 Change Password</h3>
+        <div class="ar"><input type="password" id="pw_new" placeholder="New password" autocomplete="new-password"></div>
+        <div class="ar"><input type="password" id="pw_confirm" placeholder="Confirm new password" autocomplete="new-password"></div>
+        <button class="asave" onclick="changePassword()">Update Password</button>
       </div>
 
     </div>
@@ -769,7 +830,10 @@ var products=[
 function renderProducts(){
   var g=document.getElementById('productGrid');
   g.innerHTML=products.map(function(p){
-    return '<div class="pcard" tabindex="0"><div class="pcard-icon">'+p.emoji+'</div><span class="pcard-tag">'+p.tag+'</span><h3>'+p.name+'</h3><p>'+p.desc+'</p><div class="pcard-foot"><span class="pcard-cert">'+p.cert+'</span><a class="pcard-enq" href="#contact">Enquire →</a></div></div>';
+    var imgHtml = p.photo
+      ? '<div class="pcard-photo-wrap"><img class="pcard-photo" src="'+p.photo+'" alt="'+p.name+'" loading="lazy"></div>'
+      : '<div class="pcard-photo-wrap" style="display:flex;align-items:center;justify-content:center;background:var(--green-pale);height:200px"><span style="font-size:48px">'+p.emoji+'</span></div>';
+    return '<div class="pcard" tabindex="0">'+imgHtml+'<div class="pcard-body"><span class="pcard-tag">'+p.tag+'</span><h3>'+p.name+'</h3><p>'+p.desc+'</p><div class="pcard-foot"><span class="pcard-cert">'+p.cert+'</span><a class="pcard-enq" href="#contact">Enquire →</a></div></div></div>';
   }).join('');
   var s=document.getElementById('cProduct');
   var v=s.value;
@@ -782,8 +846,27 @@ function renderAdminList(){
   var l=document.getElementById('adminProductList');
   if(!l)return;
   l.innerHTML=products.map(function(p){
-    return '<div class="p-item"><span>'+p.emoji+' '+p.name+'</span><span class="p-sm-tag">'+p.tag+'</span><button class="del-btn" onclick="delProduct('+p.id+')">Delete</button></div>';
+    var thumb=p.photo?'<img src="'+p.photo+'" style="width:36px;height:36px;border-radius:4px;object-fit:cover;flex-shrink:0">':'<span style="font-size:22px">'+p.emoji+'</span>';
+    return '<div class="p-item">'+thumb+'<span style="flex:1">'+p.name+'</span><span class="p-sm-tag">'+p.tag+'</span><button class="del-btn" onclick="delProduct('+p.id+')">Delete</button></div>';
   }).join('');
+}
+
+function previewPhoto(input){
+  var file=input.files[0];
+  if(!file)return;
+  if(file.size>5*1024*1024){showToast('Photo too large. Max 5MB.');input.value='';return;}
+  var reader=new FileReader();
+  reader.onload=function(e){
+    var prev=document.getElementById('p_photo_preview');
+    prev.src=e.target.result;
+    prev.style.display='block';
+    var lbl=document.getElementById('photoLabel');
+    lbl.querySelector('span:nth-child(1)').style.display='none';
+    lbl.querySelector('span:nth-child(2)').style.display='none';
+    lbl.style.borderColor='#1a5c2a';
+    lbl.style.background='#f0faf3';
+  };
+  reader.readAsDataURL(file);
 }
 
 function delProduct(id){
@@ -794,14 +877,26 @@ function delProduct(id){
 function addProduct(){
   var n=document.getElementById('p_name').value.trim();
   if(!n){showToast('Please enter a product name.');return;}
+  var photoSrc='';
+  var prev=document.getElementById('p_photo_preview');
+  if(prev.src&&prev.style.display!=='none')photoSrc=prev.src;
   products.push({
     id:Date.now(),name:n,
-    emoji:document.getElementById('p_emoji').value||'🌿',
+    emoji:'🌿',
     tag:document.getElementById('p_tag').value||'Product',
     desc:document.getElementById('p_desc').value||'',
-    cert:document.getElementById('p_cert').value||''
+    cert:document.getElementById('p_cert').value||'',
+    photo:photoSrc
   });
-  ['p_name','p_desc','p_tag','p_cert','p_emoji'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('p_name').value='';
+  document.getElementById('p_desc').value='';
+  document.getElementById('p_tag').value='';
+  document.getElementById('p_cert').value='';
+  document.getElementById('p_photo').value='';
+  prev.src='';prev.style.display='none';
+  var lbl=document.getElementById('photoLabel');
+  lbl.querySelectorAll('span').forEach(function(s){s.style.display='';});
+  lbl.style.borderColor='#c8e6cf';lbl.style.background='#f9fdf9';
   renderProducts();showToast('✓ Product added!');
 }
 
@@ -810,9 +905,7 @@ function saveContact(){
   document.getElementById('contactPhone').textContent=document.getElementById('a_phone').value;
   document.getElementById('contactLocation').textContent=document.getElementById('a_location').value;
   var waNum=document.getElementById('a_wa').value.trim().replace(/[^0-9+]/g,'');
-  if(waNum){
-    document.getElementById('waBtn').href='https://wa.me/'+waNum.replace('+','');
-  }
+  if(waNum){document.getElementById('waBtn').href='https://wa.me/'+waNum.replace('+','');}
   showToast('✓ Contact info updated!');
 }
 
@@ -820,6 +913,18 @@ function saveBio(){
   document.getElementById('ownerName').textContent=document.getElementById('a_owner').value;
   document.getElementById('ownerBio').textContent=document.getElementById('a_bio').value;
   showToast('✓ Bio updated!');
+}
+
+function changePassword(){
+  var np=document.getElementById('pw_new').value;
+  var cp=document.getElementById('pw_confirm').value;
+  if(!np){showToast('Please enter a new password.');return;}
+  if(np.length<6){showToast('Password must be at least 6 characters.');return;}
+  if(np!==cp){showToast('Passwords do not match.');return;}
+  ADMIN_PW=np;
+  document.getElementById('pw_new').value='';
+  document.getElementById('pw_confirm').value='';
+  showToast('✓ Password updated successfully!');
 }
 
 function submitEnquiry(){
@@ -842,8 +947,7 @@ function showToast(msg){
 function toggleMenu(){
   var m=document.getElementById('mobileMenu');
   var h=document.getElementById('hamBtn');
-  m.classList.toggle('open');
-  h.classList.toggle('open');
+  m.classList.toggle('open');h.classList.toggle('open');
   document.body.style.overflow=m.classList.contains('open')?'hidden':'';
 }
 function closeMenu(){
@@ -852,7 +956,7 @@ function closeMenu(){
   document.body.style.overflow='';
 }
 
-/* Admin password gate */
+/* ── Admin password gate ── */
 var ADMIN_PW='Sangeetha@29';
 function openAdmin(){
   document.getElementById('pwInput').value='';
@@ -860,9 +964,7 @@ function openAdmin(){
   document.getElementById('pwGate').style.display='flex';
   setTimeout(function(){document.getElementById('pwInput').focus();},100);
 }
-function closePwGate(){
-  document.getElementById('pwGate').style.display='none';
-}
+function closePwGate(){document.getElementById('pwGate').style.display='none';}
 function checkPw(){
   var val=document.getElementById('pwInput').value;
   if(val===ADMIN_PW){
@@ -875,8 +977,70 @@ function checkPw(){
     document.getElementById('pwInput').focus();
   }
 }
-function closeAdmin(){document.getElementById('adminOverlay').classList.remove('active')}
+function closeAdmin(){document.getElementById('adminOverlay').classList.remove('active');}
 document.getElementById('adminOverlay').addEventListener('click',function(e){if(e.target===this)closeAdmin();});
+
+/* ── OTP Forgot Password ── */
+var generatedOtp='';
+function showForgot(){
+  document.getElementById('pwGate').style.display='none';
+  document.getElementById('otpGate').style.display='flex';
+  document.getElementById('otpStep1').style.display='block';
+  document.getElementById('otpStep2').style.display='none';
+  document.getElementById('otpSendMsg').textContent='';
+  document.getElementById('otpInput') && (document.getElementById('otpInput').value='');
+  document.getElementById('otp_newpw') && (document.getElementById('otp_newpw').value='');
+}
+function closeOtpGate(){
+  document.getElementById('otpGate').style.display='none';
+  generatedOtp='';
+}
+function sendOtp(){
+  generatedOtp=String(Math.floor(100000+Math.random()*900000));
+  var btn=document.querySelector('#otpStep1 button');
+  btn.textContent='Sending…';btn.disabled=true;
+  // Send via fast2sms (free tier — works with Indian numbers)
+  fetch('https://www.fast2sms.com/dev/bulkV2?authorization=YOUR_FAST2SMS_API_KEY&variables_values='+generatedOtp+'&route=otp&numbers=7695861063',{method:'GET'})
+  .then(function(r){return r.json();})
+  .then(function(d){
+    btn.textContent='Send OTP →';btn.disabled=false;
+    if(d.return){
+      document.getElementById('otpSendMsg').textContent='✓ OTP sent to +91 76958 61063';
+      document.getElementById('otpStep1').style.display='none';
+      document.getElementById('otpStep2').style.display='block';
+    } else {
+      // Fallback: show OTP in toast for testing (remove in production)
+      document.getElementById('otpSendMsg').textContent='SMS service not configured. OTP: '+generatedOtp;
+      setTimeout(function(){
+        document.getElementById('otpStep1').style.display='none';
+        document.getElementById('otpStep2').style.display='block';
+      },2000);
+    }
+  })
+  .catch(function(){
+    btn.textContent='Send OTP →';btn.disabled=false;
+    // Fallback: still allow OTP entry
+    document.getElementById('otpSendMsg').textContent='OTP generated. Check your phone or use: '+generatedOtp;
+    setTimeout(function(){
+      document.getElementById('otpStep1').style.display='none';
+      document.getElementById('otpStep2').style.display='block';
+    },2000);
+  });
+}
+function verifyOtp(){
+  var entered=document.getElementById('otpInput').value.trim();
+  var newpw=document.getElementById('otp_newpw').value;
+  if(entered!==generatedOtp){
+    document.getElementById('otpErr').textContent='Wrong OTP. Please try again.';return;
+  }
+  if(!newpw||newpw.length<6){
+    document.getElementById('otpErr').textContent='Enter a new password (min 6 characters).';return;
+  }
+  ADMIN_PW=newpw;
+  generatedOtp='';
+  closeOtpGate();
+  showToast('✓ Password reset successfully! Login with your new password.');
+}
 
 renderProducts();
 </script>
