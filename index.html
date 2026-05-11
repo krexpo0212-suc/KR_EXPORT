@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -25,131 +26,131 @@ a{color:inherit}
 
 /* ── NAV ── */
 nav{
-  background:rgba(250,248,242,0.97);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  padding:0 var(--px);
-  display:flex;align-items:center;justify-content:space-between;
-  height:64px;position:sticky;top:0;z-index:200;
-  border-bottom:1px solid rgba(26,92,42,0.12);
+background:rgba(250,248,242,0.97);
+backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+padding:0 var(–px);
+display:flex;align-items:center;justify-content:space-between;
+height:64px;position:sticky;top:0;z-index:200;
+border-bottom:1px solid rgba(26,92,42,0.12);
 }
 /* Logo scales on mobile */
 .logo-wrap svg{width:clamp(140px,42vw,230px);height:auto}
 .desktop-nav{display:flex;gap:24px;align-items:center}
 .desktop-nav a{
-  text-decoration:none;color:var(--dark);font-size:13px;
-  font-weight:400;letter-spacing:.4px;transition:color .2s;white-space:nowrap;
+text-decoration:none;color:var(–dark);font-size:13px;
+font-weight:400;letter-spacing:.4px;transition:color .2s;white-space:nowrap;
 }
-.desktop-nav a:hover{color:var(--green)}
+.desktop-nav a:hover{color:var(–green)}
 .nav-quote{
-  background:var(--green)!important;color:#fff!important;
-  padding:9px 20px;border-radius:3px;font-size:12px!important;
-  letter-spacing:.8px;text-transform:uppercase;transition:background .2s!important;
+background:var(–green)!important;color:#fff!important;
+padding:9px 20px;border-radius:3px;font-size:12px!important;
+letter-spacing:.8px;text-transform:uppercase;transition:background .2s!important;
 }
-.nav-quote:hover{background:var(--green-mid)!important}
+.nav-quote:hover{background:var(–green-mid)!important}
 .hamburger{
-  display:none;flex-direction:column;justify-content:center;gap:5px;
-  background:none;border:none;padding:8px;cursor:pointer;min-width:44px;min-height:44px;
+display:none;flex-direction:column;justify-content:center;gap:5px;
+background:none;border:none;padding:8px;cursor:pointer;min-width:44px;min-height:44px;
 }
-.hamburger span{width:22px;height:1.5px;background:var(--dark);display:block;transition:all .3s;border-radius:2px}
+.hamburger span{width:22px;height:1.5px;background:var(–dark);display:block;transition:all .3s;border-radius:2px}
 .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
 .mobile-menu{
-  display:none;position:fixed;top:64px;left:0;right:0;bottom:0;
-  background:var(--cream);z-index:199;padding:8px 0;
-  overflow-y:auto;flex-direction:column;
+display:none;position:fixed;top:64px;left:0;right:0;bottom:0;
+background:var(–cream);z-index:199;padding:8px 0;
+overflow-y:auto;flex-direction:column;
 }
 .mobile-menu.open{display:flex}
 .mobile-menu a{
-  text-decoration:none;color:var(--dark);font-size:16px;
-  padding:16px var(--px);border-bottom:1px solid #eee;font-weight:400;
-  display:block;
+text-decoration:none;color:var(–dark);font-size:16px;
+padding:16px var(–px);border-bottom:1px solid #eee;font-weight:400;
+display:block;
 }
 .mobile-menu a.mm-cta{
-  margin:16px var(--px);background:var(--green);color:#fff;
-  text-align:center;border-radius:4px;border:none;padding:16px;
-  font-weight:500;letter-spacing:.5px;
+margin:16px var(–px);background:var(–green);color:#fff;
+text-align:center;border-radius:4px;border:none;padding:16px;
+font-weight:500;letter-spacing:.5px;
 }
 .admin-btn-mobile{
-  margin:8px var(--px) 24px;
-  background:none;border:1px solid rgba(26,92,42,.3);
-  color:var(--green);padding:14px;border-radius:4px;
-  font-size:14px;font-family:var(--sans);cursor:pointer;font-weight:400;
-  text-align:center;
+margin:8px var(–px) 24px;
+background:none;border:1px solid rgba(26,92,42,.3);
+color:var(–green);padding:14px;border-radius:4px;
+font-size:14px;font-family:var(–sans);cursor:pointer;font-weight:400;
+text-align:center;
 }
 
 /* ── HERO ── */
 .hero{
-  background:var(--green-deep);color:#fff;
-  padding:clamp(48px,8vw,96px) var(--px) clamp(56px,8vw,96px);
-  display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
-  position:relative;overflow:hidden;min-height:90vh;
+background:var(–green-deep);color:#fff;
+padding:clamp(48px,8vw,96px) var(–px) clamp(56px,8vw,96px);
+display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
+position:relative;overflow:hidden;min-height:90vh;
 }
 .hero-glow{
-  position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse at 72% 38%,rgba(45,138,66,.18) 0%,transparent 55%),
-    radial-gradient(ellipse at 18% 78%,rgba(184,134,11,.09) 0%,transparent 45%);
+position:absolute;inset:0;pointer-events:none;
+background:radial-gradient(ellipse at 72% 38%,rgba(45,138,66,.18) 0%,transparent 55%),
+radial-gradient(ellipse at 18% 78%,rgba(184,134,11,.09) 0%,transparent 45%);
 }
 .hero-grid-tex{
-  position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
-  background-size:40px 40px;
+position:absolute;inset:0;pointer-events:none;
+background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+background-size:40px 40px;
 }
 .hero-content{position:relative;z-index:1}
 .hero-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  border:1px solid rgba(245,200,66,.3);
-  padding:6px 14px;border-radius:2px;
-  font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
-  color:rgba(245,200,66,.9);margin-bottom:24px;font-weight:400;
+display:inline-flex;align-items:center;gap:8px;
+border:1px solid rgba(245,200,66,.3);
+padding:6px 14px;border-radius:2px;
+font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
+color:rgba(245,200,66,.9);margin-bottom:24px;font-weight:400;
 }
-.hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--gold-light);border-radius:50%}
+.hero-eyebrow::before{content:’’;width:6px;height:6px;background:var(–gold-light);border-radius:50%}
 .hero h1{
-  font-family:var(--serif);
-  font-size:clamp(38px,5.5vw,66px);
-  line-height:1.1;font-weight:700;
-  margin-bottom:20px;letter-spacing:-.5px;
+font-family:var(–serif);
+font-size:clamp(38px,5.5vw,66px);
+line-height:1.1;font-weight:700;
+margin-bottom:20px;letter-spacing:-.5px;
 }
-.hero h1 em{color:var(--gold-light);font-style:italic}
+.hero h1 em{color:var(–gold-light);font-style:italic}
 .hero-desc{
-  font-size:clamp(15px,2vw,17px);line-height:1.8;
-  color:rgba(255,255,255,.72);max-width:460px;
-  margin-bottom:36px;font-weight:300;
+font-size:clamp(15px,2vw,17px);line-height:1.8;
+color:rgba(255,255,255,.72);max-width:460px;
+margin-bottom:36px;font-weight:300;
 }
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
 .btn-gold{
-  background:var(--gold-light);color:#1a1a1a;
-  padding:14px 30px;border-radius:3px;font-weight:500;font-size:15px;
-  text-decoration:none;letter-spacing:.3px;transition:all .2s;border:none;
-  cursor:pointer;font-family:var(--sans);display:inline-block;
-  min-height:48px;display:flex;align-items:center;
+background:var(–gold-light);color:#1a1a1a;
+padding:14px 30px;border-radius:3px;font-weight:500;font-size:15px;
+text-decoration:none;letter-spacing:.3px;transition:all .2s;border:none;
+cursor:pointer;font-family:var(–sans);display:inline-block;
+min-height:48px;display:flex;align-items:center;
 }
 .btn-gold:hover{background:#e8ba38;transform:translateY(-2px)}
 .btn-ghost{
-  border:1px solid rgba(255,255,255,.35);color:rgba(255,255,255,.85);
-  padding:14px 30px;border-radius:3px;font-size:15px;
-  text-decoration:none;letter-spacing:.3px;transition:all .2s;font-weight:300;
-  min-height:48px;display:flex;align-items:center;
+border:1px solid rgba(255,255,255,.35);color:rgba(255,255,255,.85);
+padding:14px 30px;border-radius:3px;font-size:15px;
+text-decoration:none;letter-spacing:.3px;transition:all .2s;font-weight:300;
+min-height:48px;display:flex;align-items:center;
 }
 .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.06)}
 .trust-pills{display:flex;flex-wrap:wrap;gap:8px}
 .trust-pill{
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
-  padding:6px 13px;border-radius:2px;font-size:11px;
-  letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:400;
+background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+padding:6px 13px;border-radius:2px;font-size:11px;
+letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:400;
 }
 .hero-right{position:relative;z-index:1;display:flex;flex-direction:column;gap:16px}
 .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .hero-stat{
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-  border-radius:6px;padding:20px 18px;
+background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+border-radius:6px;padding:20px 18px;
 }
-.hero-stat big{font-family:var(--serif);font-size:36px;color:var(--gold-light);display:block;line-height:1;font-weight:700}
+.hero-stat big{font-family:var(–serif);font-size:36px;color:var(–gold-light);display:block;line-height:1;font-weight:700}
 .hero-stat span{font-size:11px;color:rgba(255,255,255,.48);letter-spacing:1.5px;text-transform:uppercase;margin-top:5px;display:block}
 .hero-routes{
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
-  border-radius:6px;padding:22px 20px;display:flex;flex-direction:column;gap:14px;
+background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+border-radius:6px;padding:22px 20px;display:flex;flex-direction:column;gap:14px;
 }
 .routes-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.38);font-weight:400;margin-bottom:2px}
 .route-row{display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(255,255,255,.8)}
@@ -157,99 +158,99 @@ nav{
 
 /* ── TRUST BAND ── */
 .trust-band{
-  background:var(--green);
-  padding:14px var(--px);
-  display:flex;flex-wrap:wrap;justify-content:center;gap:0;
+background:var(–green);
+padding:14px var(–px);
+display:flex;flex-wrap:wrap;justify-content:center;gap:0;
 }
 .tbi{
-  color:rgba(255,255,255,.85);font-size:12px;
-  display:flex;align-items:center;gap:7px;
-  padding:6px 20px;letter-spacing:.7px;font-weight:400;
-  border-right:1px solid rgba(255,255,255,.15);
+color:rgba(255,255,255,.85);font-size:12px;
+display:flex;align-items:center;gap:7px;
+padding:6px 20px;letter-spacing:.7px;font-weight:400;
+border-right:1px solid rgba(255,255,255,.15);
 }
 .tbi:last-child{border-right:none}
 .tbi strong{font-weight:500;color:#fff}
 
 /* ── SECTIONS ── */
-section{padding:clamp(56px,8vw,96px) var(--px)}
-.sec-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--green-mid);font-weight:500;margin-bottom:10px;display:block}
-.sec-title{font-family:var(--serif);font-size:clamp(28px,4vw,44px);color:var(--dark);margin-bottom:14px;font-weight:700;line-height:1.15;letter-spacing:-.3px}
-.sec-sub{color:var(--gray);font-size:clamp(14px,2vw,16px);line-height:1.8;max-width:560px;margin-bottom:48px;font-weight:300}
-.gold-bar{width:44px;height:2px;background:var(--gold);margin-bottom:20px;border-radius:1px}
+section{padding:clamp(56px,8vw,96px) var(–px)}
+.sec-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(–green-mid);font-weight:500;margin-bottom:10px;display:block}
+.sec-title{font-family:var(–serif);font-size:clamp(28px,4vw,44px);color:var(–dark);margin-bottom:14px;font-weight:700;line-height:1.15;letter-spacing:-.3px}
+.sec-sub{color:var(–gray);font-size:clamp(14px,2vw,16px);line-height:1.8;max-width:560px;margin-bottom:48px;font-weight:300}
+.gold-bar{width:44px;height:2px;background:var(–gold);margin-bottom:20px;border-radius:1px}
 
 /* ── PRODUCTS ── */
-.products-wrap{background:var(--white)}
+.products-wrap{background:var(–white)}
 .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:1px;background:#e8e8e8}
 .pcard{
-  background:var(--white);padding:0 0 24px;
-  transition:background .2s;cursor:pointer;position:relative;overflow:hidden;
+background:var(–white);padding:0 0 24px;
+transition:background .2s;cursor:pointer;position:relative;overflow:hidden;
 }
 .pcard::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
-  background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .3s;
+content:’’;position:absolute;bottom:0;left:0;right:0;height:3px;
+background:var(–green);transform:scaleX(0);transform-origin:left;transition:transform .3s;
 }
 .pcard:hover::after,.pcard:focus::after{transform:scaleX(1)}
-.pcard:hover,.pcard:focus{background:var(--green-pale);outline:none}
-.pcard-photo-wrap{overflow:hidden;height:200px;position:relative;background:var(--green-pale)}
+.pcard:hover,.pcard:focus{background:var(–green-pale);outline:none}
+.pcard-photo-wrap{overflow:hidden;height:200px;position:relative;background:var(–green-pale)}
 .pcard-photo{width:100%;height:200px;object-fit:cover;display:block;transition:transform .4s ease}
 .pcard:hover .pcard-photo{transform:scale(1.05)}
 .pcard-body{padding:20px 24px 0}
 .pcard-icon{display:none}
-.pcard-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green-mid);font-weight:500;margin-bottom:8px;display:block}
-.pcard h3{font-family:var(--serif);font-size:21px;margin-bottom:10px;font-weight:600}
-.pcard p{font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:18px;font-weight:300}
+.pcard-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(–green-mid);font-weight:500;margin-bottom:8px;display:block}
+.pcard h3{font-family:var(–serif);font-size:21px;margin-bottom:10px;font-weight:600}
+.pcard p{font-size:14px;color:var(–gray);line-height:1.7;margin-bottom:18px;font-weight:300}
 .pcard-foot{display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid #f0f0f0;flex-wrap:wrap;gap:8px}
-.pcard-cert{font-size:11px;color:var(--gray-lt)}
-.pcard-enq{font-size:13px;color:var(--green);font-weight:500;text-decoration:none;white-space:nowrap}
+.pcard-cert{font-size:11px;color:var(–gray-lt)}
+.pcard-enq{font-size:13px;color:var(–green);font-weight:500;text-decoration:none;white-space:nowrap}
 
 /* ── WHY US ── */
-.why-wrap{background:var(--cream)}
+.why-wrap{background:var(–cream)}
 .why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:20px}
-.wcard{background:var(--white);border-radius:4px;padding:28px 24px;border:1px solid #eaeaea;transition:all .25s}
-.wcard:hover{border-color:var(--green-mid);transform:translateY(-3px);box-shadow:0 10px 28px rgba(26,92,42,.09)}
-.wcard-icon{width:44px;height:44px;background:var(--green-pale);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:18px}
-.wcard h3{font-family:var(--serif);font-size:18px;margin-bottom:8px;font-weight:600}
-.wcard p{font-size:14px;color:var(--gray);line-height:1.7;font-weight:300}
+.wcard{background:var(–white);border-radius:4px;padding:28px 24px;border:1px solid #eaeaea;transition:all .25s}
+.wcard:hover{border-color:var(–green-mid);transform:translateY(-3px);box-shadow:0 10px 28px rgba(26,92,42,.09)}
+.wcard-icon{width:44px;height:44px;background:var(–green-pale);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:18px}
+.wcard h3{font-family:var(–serif);font-size:18px;margin-bottom:8px;font-weight:600}
+.wcard p{font-size:14px;color:var(–gray);line-height:1.7;font-weight:300}
 
 /* ── ABOUT ── */
-.about-wrap{background:var(--white)}
+.about-wrap{background:var(–white)}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
-.about-text p{font-size:clamp(14px,1.8vw,16px);line-height:1.9;color:var(--gray);margin-bottom:18px;font-weight:300}
-.about-text strong{color:var(--dark);font-weight:500}
+.about-text p{font-size:clamp(14px,1.8vw,16px);line-height:1.9;color:var(–gray);margin-bottom:18px;font-weight:300}
+.about-text strong{color:var(–dark);font-weight:500}
 .stat-row{display:flex;gap:32px;flex-wrap:wrap;margin-top:36px;padding-top:36px;border-top:1px solid #eee}
-.stat-item big{font-family:var(--serif);font-size:42px;color:var(--green);display:block;line-height:1;font-weight:700}
-.stat-item span{font-size:11px;color:var(--gray-lt);letter-spacing:1.5px;text-transform:uppercase;margin-top:5px;display:block}
-.owner-card{background:var(--green-deep);color:#fff;border-radius:6px;padding:32px 28px;position:relative;overflow:hidden}
-.owner-card::before{content:'';position:absolute;bottom:-40px;right:-40px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.04)}
-.oc-avatar{width:60px;height:60px;border-radius:50%;background:var(--green-mid);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:18px;border:2px solid rgba(255,255,255,.2)}
-.oc-name{font-family:var(--serif);font-size:22px;margin-bottom:4px;font-weight:700}
-.oc-role{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-light);margin-bottom:16px;font-weight:400}
+.stat-item big{font-family:var(–serif);font-size:42px;color:var(–green);display:block;line-height:1;font-weight:700}
+.stat-item span{font-size:11px;color:var(–gray-lt);letter-spacing:1.5px;text-transform:uppercase;margin-top:5px;display:block}
+.owner-card{background:var(–green-deep);color:#fff;border-radius:6px;padding:32px 28px;position:relative;overflow:hidden}
+.owner-card::before{content:’’;position:absolute;bottom:-40px;right:-40px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.04)}
+.oc-avatar{width:60px;height:60px;border-radius:50%;background:var(–green-mid);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(–serif);font-size:20px;font-weight:700;margin-bottom:18px;border:2px solid rgba(255,255,255,.2)}
+.oc-name{font-family:var(–serif);font-size:22px;margin-bottom:4px;font-weight:700}
+.oc-role{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(–gold-light);margin-bottom:16px;font-weight:400}
 .oc-bio{font-size:14px;line-height:1.8;color:rgba(255,255,255,.68);font-weight:300;margin-bottom:22px}
 .comp-tags{display:flex;flex-wrap:wrap;gap:8px}
 .comp-tag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:5px 12px;border-radius:2px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.62);font-weight:400}
 
 /* ── CERTS ── */
-.certs-wrap{background:var(--cream)}
+.certs-wrap{background:var(–cream)}
 .cert-grid{display:flex;flex-wrap:wrap;gap:12px}
-.cert-card{background:var(--white);border:1px solid #eaeaea;border-radius:4px;padding:18px 20px;display:flex;align-items:center;gap:14px;transition:all .2s;flex:1 1 180px}
-.cert-card:hover{border-color:var(--green-mid);box-shadow:0 4px 16px rgba(26,92,42,.07)}
+.cert-card{background:var(–white);border:1px solid #eaeaea;border-radius:4px;padding:18px 20px;display:flex;align-items:center;gap:14px;transition:all .2s;flex:1 1 180px}
+.cert-card:hover{border-color:var(–green-mid);box-shadow:0 4px 16px rgba(26,92,42,.07)}
 .cert-icon{font-size:22px;flex-shrink:0}
 .cert-card h4{font-size:13px;font-weight:500}
-.cert-card p{font-size:11px;color:var(--gray-lt);margin-top:2px}
+.cert-card p{font-size:11px;color:var(–gray-lt);margin-top:2px}
 
 /* ── MARKETS ── */
-.markets-wrap{background:var(--green-deep);color:#fff}
+.markets-wrap{background:var(–green-deep);color:#fff}
 .markets-wrap .sec-title{color:#fff}
 .markets-wrap .sec-sub{color:rgba(255,255,255,.58)}
 .markets-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:14px}
 .mcard{border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:28px 22px;text-align:center;transition:all .25s;background:rgba(255,255,255,.04)}
 .mcard:hover{background:rgba(255,255,255,.09);border-color:rgba(245,200,66,.28)}
 .mcard-flag{font-size:40px;display:block;margin-bottom:12px}
-.mcard h3{font-family:var(--serif);font-size:19px;margin-bottom:8px;color:#fff;font-weight:600}
+.mcard h3{font-family:var(–serif);font-size:19px;margin-bottom:8px;color:#fff;font-weight:600}
 .mcard p{font-size:13px;color:rgba(255,255,255,.48);line-height:1.6;font-weight:300}
 
 /* ── CONTACT ── */
-.contact-wrap{background:var(--green)}
+.contact-wrap{background:var(–green)}
 .contact-wrap .sec-label{color:rgba(255,255,255,.45)}
 .contact-wrap .sec-title{color:#fff}
 .contact-wrap .sec-sub{color:rgba(255,255,255,.62)}
@@ -257,21 +258,21 @@ section{padding:clamp(56px,8vw,96px) var(--px)}
 .fgroup{margin-bottom:13px}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:13px}
 .fgroup input,.fgroup select,.fgroup textarea{
-  width:100%;background:rgba(255,255,255,.1);
-  border:1px solid rgba(255,255,255,.2);color:#fff;
-  padding:14px 16px;border-radius:3px;font-family:var(--sans);
-  font-size:16px;outline:none;transition:border .2s;font-weight:300;
-  -webkit-appearance:none;min-height:48px;
+width:100%;background:rgba(255,255,255,.1);
+border:1px solid rgba(255,255,255,.2);color:#fff;
+padding:14px 16px;border-radius:3px;font-family:var(–sans);
+font-size:16px;outline:none;transition:border .2s;font-weight:300;
+-webkit-appearance:none;min-height:48px;
 }
 .fgroup input::placeholder,.fgroup textarea::placeholder{color:rgba(255,255,255,.38)}
 .fgroup input:focus,.fgroup select:focus,.fgroup textarea:focus{border-color:rgba(255,255,255,.5)}
 .fgroup select option{color:#111}
 .fgroup textarea{resize:vertical;height:96px;font-size:15px}
 .form-submit{
-  width:100%;background:var(--gold-light);color:#1a1a1a;border:none;
-  padding:16px;border-radius:3px;font-size:16px;font-weight:500;
-  cursor:pointer;font-family:var(--sans);letter-spacing:.4px;
-  transition:background .2s;min-height:52px;
+width:100%;background:var(–gold-light);color:#1a1a1a;border:none;
+padding:16px;border-radius:3px;font-size:16px;font-weight:500;
+cursor:pointer;font-family:var(–sans);letter-spacing:.4px;
+transition:background .2s;min-height:52px;
 }
 .form-submit:hover{background:#e8ba38}
 .cinfo{display:flex;flex-direction:column;gap:22px;padding-top:4px}
@@ -285,22 +286,22 @@ section{padding:clamp(56px,8vw,96px) var(--px)}
 
 /* WhatsApp Floating Button */
 .wa-btn{
-  position:fixed;bottom:20px;right:18px;z-index:300;
-  background:#25d366;color:#fff;border:none;border-radius:50%;
-  width:56px;height:56px;cursor:pointer;font-size:26px;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 16px rgba(37,211,102,.4);transition:transform .2s;
-  text-decoration:none;
+position:fixed;bottom:20px;right:18px;z-index:300;
+background:#25d366;color:#fff;border:none;border-radius:50%;
+width:56px;height:56px;cursor:pointer;font-size:26px;
+display:flex;align-items:center;justify-content:center;
+box-shadow:0 4px 16px rgba(37,211,102,.4);transition:transform .2s;
+text-decoration:none;
 }
 .wa-btn:hover{transform:scale(1.08)}
 
 /* ── FOOTER ── */
 footer{
-  background:#0a2410;color:rgba(255,255,255,.4);
-  padding:36px var(--px);
-  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
+background:#0a2410;color:rgba(255,255,255,.4);
+padding:36px var(–px);
+display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
 }
-.foot-brand{font-family:var(--serif);color:rgba(255,255,255,.82);font-size:19px;font-weight:700}
+.foot-brand{font-family:var(–serif);color:rgba(255,255,255,.82);font-size:19px;font-weight:700}
 .foot-tagline{font-size:10px;color:rgba(255,255,255,.28);letter-spacing:1.5px;margin-top:3px;font-weight:300}
 .foot-links{display:flex;gap:20px;flex-wrap:wrap}
 .foot-links a{color:rgba(255,255,255,.32);text-decoration:none;font-size:12px;transition:color .2s}
@@ -310,132 +311,134 @@ footer{
 /* ── ADMIN PANEL ── */
 .adm-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:999;align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto;backdrop-filter:blur(4px)}
 .adm-ov.active{display:flex}
-.adm-panel{background:var(--white);border-radius:8px;width:100%;max-width:680px;margin:auto;box-shadow:0 24px 60px rgba(0,0,0,.28)}
-.adm-head{background:var(--green-deep);color:#fff;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;border-radius:8px 8px 0 0;position:sticky;top:0}
-.adm-head h2{font-family:var(--serif);font-size:20px;font-weight:700}
+.adm-panel{background:var(–white);border-radius:8px;width:100%;max-width:680px;margin:auto;box-shadow:0 24px 60px rgba(0,0,0,.28)}
+.adm-head{background:var(–green-deep);color:#fff;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;border-radius:8px 8px 0 0;position:sticky;top:0}
+.adm-head h2{font-family:var(–serif);font-size:20px;font-weight:700}
 .adm-close{background:rgba(255,255,255,.12);border:none;color:#fff;width:34px;height:34px;border-radius:4px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .adm-body{padding:24px;max-height:calc(90vh - 70px);overflow-y:auto}
 .adm-sec{margin-bottom:28px}
-.adm-sec h3{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--green);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #eee;font-weight:500}
+.adm-sec h3{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(–green);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #eee;font-weight:500}
 .ar{display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap}
-.ar input,.ar textarea,.ar select{flex:1;min-width:120px;background:#fff;border:1px solid #ddd;color:var(--dark);padding:11px 13px;border-radius:4px;font-family:var(--sans);font-size:14px;outline:none;transition:border .2s}
-.ar input:focus,.ar textarea:focus{border-color:var(--green)}
+.ar input,.ar textarea,.ar select{flex:1;min-width:120px;background:#fff;border:1px solid #ddd;color:var(–dark);padding:11px 13px;border-radius:4px;font-family:var(–sans);font-size:14px;outline:none;transition:border .2s}
+.ar input:focus,.ar textarea:focus{border-color:var(–green)}
 .ar textarea{resize:vertical;height:72px}
-.asave{background:var(--green);color:#fff;border:none;padding:11px 22px;border-radius:4px;font-size:13px;cursor:pointer;font-family:var(--sans);font-weight:500;transition:background .2s;min-height:44px}
-.asave:hover{background:var(--green-mid)}
+.asave{background:var(–green);color:#fff;border:none;padding:11px 22px;border-radius:4px;font-size:13px;cursor:pointer;font-family:var(–sans);font-weight:500;transition:background .2s;min-height:44px}
+.asave:hover{background:var(–green-mid)}
 .p-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
 .p-item{display:flex;align-items:center;gap:8px;padding:10px 13px;background:#f9f9f9;border-radius:4px;border:1px solid #eee;flex-wrap:wrap}
 .p-item span{flex:1;font-size:13px;min-width:80px}
-.p-sm-tag{font-size:10px;padding:3px 8px;background:var(--green-pale);color:var(--green);border-radius:2px;letter-spacing:.5px;text-transform:uppercase;font-weight:500}
+.p-sm-tag{font-size:10px;padding:3px 8px;background:var(–green-pale);color:var(–green);border-radius:2px;letter-spacing:.5px;text-transform:uppercase;font-weight:500}
 .del-btn{background:#fff0f0;color:#c00;border:none;padding:6px 12px;border-radius:3px;font-size:12px;cursor:pointer;min-height:32px}
 .add-form{background:#f4f9f5;border-radius:6px;padding:16px;border:1px solid #d0e8d6}
-.add-form-title{font-size:11px;color:var(--green);font-weight:500;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+.add-form-title{font-size:11px;color:var(–green);font-weight:500;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
 
 /* ── TOAST ── */
 .toast{
-  position:fixed;bottom:90px;left:50%;transform:translateX(-50%);
-  background:var(--green-deep);color:#fff;padding:12px 24px;
-  border-radius:4px;font-size:14px;z-index:9999;
-  opacity:0;transition:opacity .3s;pointer-events:none;
-  border-left:3px solid var(--gold-light);white-space:nowrap;
-  max-width:90vw;text-align:center;
+position:fixed;bottom:90px;left:50%;transform:translateX(-50%);
+background:var(–green-deep);color:#fff;padding:12px 24px;
+border-radius:4px;font-size:14px;z-index:9999;
+opacity:0;transition:opacity .3s;pointer-events:none;
+border-left:3px solid var(–gold-light);white-space:nowrap;
+max-width:90vw;text-align:center;
 }
 .toast.show{opacity:1}
 
 /* ════════════════════════════
-   TABLET  (≤ 900px)
+TABLET  (≤ 900px)
 ════════════════════════════ */
 @media(max-width:900px){
-  :root{--px:5%}
-  .desktop-nav{display:none}
-  .hamburger{display:flex}
+:root{–px:5%}
+.desktop-nav{display:none}
+.hamburger{display:flex}
 
-  .hero{grid-template-columns:1fr;min-height:auto;gap:0}
-  .hero-right{display:none}
+.hero{grid-template-columns:1fr;min-height:auto;gap:0}
+.hero-right{display:none}
 
-  .about-grid{grid-template-columns:1fr;gap:36px}
-  .contact-grid{grid-template-columns:1fr;gap:40px}
+.about-grid{grid-template-columns:1fr;gap:36px}
+.contact-grid{grid-template-columns:1fr;gap:40px}
 
-  .tbi{padding:6px 14px;border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}
+.tbi{padding:6px 14px;border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}
 
-  .trust-band{flex-direction:row;flex-wrap:wrap;justify-content:center}
+.trust-band{flex-direction:row;flex-wrap:wrap;justify-content:center}
 }
 
 /* ════════════════════════════
-   MOBILE  (≤ 600px)
+MOBILE  (≤ 600px)
 ════════════════════════════ */
 @media(max-width:600px){
-  :root{--px:4%}
+:root{–px:4%}
 
-  /* Nav */
-  nav{height:60px}
-  .mobile-menu{top:60px}
+/* Nav */
+nav{height:60px}
+.mobile-menu{top:60px}
 
-  /* Hero */
-  .hero{padding:40px var(--px) 52px;min-height:auto}
-  .hero-eyebrow{font-size:10px;padding:5px 12px;margin-bottom:18px}
-  .hero-desc{font-size:15px;margin-bottom:28px}
-  .hero-btns{gap:10px;margin-bottom:32px}
-  .btn-gold,.btn-ghost{padding:13px 22px;font-size:14px;width:100%;justify-content:center}
-  .trust-pills{gap:6px}
-  .trust-pill{font-size:10px;padding:5px 10px}
+/* Hero */
+.hero{padding:40px var(–px) 52px;min-height:auto}
+.hero-eyebrow{font-size:10px;padding:5px 12px;margin-bottom:18px}
+.hero-desc{font-size:15px;margin-bottom:28px}
+.hero-btns{gap:10px;margin-bottom:32px}
+.btn-gold,.btn-ghost{padding:13px 22px;font-size:14px;width:100%;justify-content:center}
+.trust-pills{gap:6px}
+.trust-pill{font-size:10px;padding:5px 10px}
 
-  /* Trust band */
-  .tbi{font-size:11px;padding:5px 12px;width:50%;border-bottom:1px solid rgba(255,255,255,.1);border-right:none;justify-content:center}
+/* Trust band */
+.tbi{font-size:11px;padding:5px 12px;width:50%;border-bottom:1px solid rgba(255,255,255,.1);border-right:none;justify-content:center}
 
-  /* Sections */
-  section{padding:48px var(--px)}
-  .sec-sub{margin-bottom:32px}
+/* Sections */
+section{padding:48px var(–px)}
+.sec-sub{margin-bottom:32px}
 
-  /* Products */
-  .product-grid{grid-template-columns:1fr}
-  .pcard{padding:24px 20px}
+/* Products */
+.product-grid{grid-template-columns:1fr}
+.pcard{padding:24px 20px}
 
-  /* Why cards */
-  .why-grid{grid-template-columns:1fr}
+/* Why cards */
+.why-grid{grid-template-columns:1fr}
 
-  /* About stats */
-  .stat-row{gap:24px}
-  .stat-item big{font-size:36px}
+/* About stats */
+.stat-row{gap:24px}
+.stat-item big{font-size:36px}
 
-  /* Certs */
-  .cert-grid{gap:10px}
-  .cert-card{flex:1 1 100%}
+/* Certs */
+.cert-grid{gap:10px}
+.cert-card{flex:1 1 100%}
 
-  /* Markets */
-  .markets-grid{grid-template-columns:1fr}
+/* Markets */
+.markets-grid{grid-template-columns:1fr}
 
-  /* Contact form – stack all rows */
-  .frow{grid-template-columns:1fr}
-  .fgroup input,.fgroup select,.fgroup textarea{font-size:16px}
+/* Contact form – stack all rows */
+.frow{grid-template-columns:1fr}
+.fgroup input,.fgroup select,.fgroup textarea{font-size:16px}
 
-  /* Footer */
-  footer{flex-direction:column;text-align:center;gap:16px}
-  .foot-links{justify-content:center}
+/* Footer */
+footer{flex-direction:column;text-align:center;gap:16px}
+.foot-links{justify-content:center}
 
-  /* Admin panel */
-  .adm-panel{border-radius:6px}
-  .ar{flex-direction:column}
-  .ar input,.ar textarea{min-width:0}
+/* Admin panel */
+.adm-panel{border-radius:6px}
+.ar{flex-direction:column}
+.ar input,.ar textarea{min-width:0}
 }
 
 /* ════════════════════════════
-   SMALL MOBILE  (≤ 380px)
+SMALL MOBILE  (≤ 380px)
 ════════════════════════════ */
 @media(max-width:380px){
-  .logo-wrap svg{width:130px}
-  .hero h1{font-size:34px}
-  .trust-pill{font-size:9px;padding:4px 8px;letter-spacing:1px}
-  .tbi{width:100%}
+.logo-wrap svg{width:130px}
+.hero h1{font-size:34px}
+.trust-pill{font-size:9px;padding:4px 8px;letter-spacing:1px}
+.tbi{width:100%}
 }
 </style>
+
 </head>
 <body>
 
 <!-- ── NAV ── -->
+
 <nav>
   <div class="logo-wrap">
-    <svg viewBox="0 0 380 52" xmlns="http://www.w3.org/2000/svg" aria-label="Rokis Enterprise – Premium Moringa">
+    <svg viewBox="0 0 320 52" xmlns="http://www.w3.org/2000/svg" aria-label="Rokis Enterprise – Premium Moringa">
       <rect x="0" y="3" width="46" height="46" rx="3" fill="#1a5c2a"/>
       <path d="M10 13 L10 40 M10 25 L22 13 M10 28 L24 40" fill="none" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M28 13 L28 40 M28 13 L37 13 Q43 13 43 20 Q43 27 37 27 L28 27 M37 27 L44 40" fill="none" stroke="#f5c842" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -448,7 +451,7 @@ footer{
       <path d="M62 26 Q68 23 69 26 Q68 29 62 26" fill="#52b86e"/>
       <path d="M62 5 Q59 2 62 0 Q65 2 62 5" fill="#f5c842"/>
       <text x="80" y="31" font-family="'Cormorant Garamond',Georgia,serif" font-size="25" fill="#1a3d0f" font-weight="700" letter-spacing="2">ROKIS ENTERPRISE</text>
-      <rect x="80" y="36" width="288" height="1.5" rx="1" fill="#b8860b"/>
+      <rect x="80" y="36" width="228" height="1.5" rx="1" fill="#b8860b"/>
       <text x="80" y="48" font-family="'DM Sans',sans-serif" font-size="9" fill="#777" font-weight="300" letter-spacing="2.2">MORINGA EXPORTS · TAMIL NADU</text>
     </svg>
   </div>
@@ -468,6 +471,7 @@ footer{
 </nav>
 
 <!-- Mobile Menu -->
+
 <div class="mobile-menu" id="mobileMenu">
   <a href="#products" onclick="closeMenu()">Products</a>
   <a href="#about" onclick="closeMenu()">About</a>
@@ -478,6 +482,7 @@ footer{
 </div>
 
 <!-- ── HERO ── -->
+
 <section class="hero">
   <div class="hero-glow"></div>
   <div class="hero-grid-tex"></div>
@@ -512,6 +517,7 @@ footer{
 </section>
 
 <!-- ── TRUST BAND ── -->
+
 <div class="trust-band">
   <div class="tbi">🌿 <strong>Moringa Oleifera</strong></div>
   <div class="tbi">📋 <strong>GSTIN Verified</strong></div>
@@ -521,6 +527,7 @@ footer{
 </div>
 
 <!-- ── PRODUCTS ── -->
+
 <section class="products-wrap" id="products">
   <span class="sec-label">What We Export</span>
   <div class="gold-bar"></div>
@@ -530,6 +537,7 @@ footer{
 </section>
 
 <!-- ── WHY US ── -->
+
 <section class="why-wrap">
   <span class="sec-label">Why Rokis Enterprise</span>
   <div class="gold-bar"></div>
@@ -546,6 +554,7 @@ footer{
 </section>
 
 <!-- ── ABOUT ── -->
+
 <section class="about-wrap" id="about">
   <span class="sec-label">About Us</span>
   <div class="gold-bar"></div>
@@ -577,6 +586,7 @@ footer{
 </section>
 
 <!-- ── CERTS ── -->
+
 <section class="certs-wrap" id="certs">
   <span class="sec-label">Compliance &amp; Documents</span>
   <div class="gold-bar"></div>
@@ -595,6 +605,7 @@ footer{
 </section>
 
 <!-- ── MARKETS ── -->
+
 <section class="markets-wrap" id="markets">
   <span class="sec-label" style="color:rgba(255,255,255,.4)">Our Reach</span>
   <div class="gold-bar" style="background:rgba(245,200,66,.45)"></div>
@@ -608,6 +619,7 @@ footer{
 </section>
 
 <!-- ── CONTACT ── -->
+
 <section class="contact-wrap" id="contact">
   <span class="sec-label">Get In Touch</span>
   <div class="gold-bar" style="background:rgba(245,200,66,.45)"></div>
@@ -663,6 +675,7 @@ footer{
 </section>
 
 <!-- ── FOOTER ── -->
+
 <footer>
   <div>
     <div class="foot-brand">Rokis Enterprise</div>
@@ -679,11 +692,13 @@ footer{
 </footer>
 
 <!-- WhatsApp Floating Button -->
-<a class="wa-btn" id="waBtn" href="#contact" title="Chat on WhatsApp" aria-label="WhatsApp">
+
+<a class="wa-btn" id="waBtn" href="https://wa.me/917695861063" title="Chat on WhatsApp" aria-label="WhatsApp">
   <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 2C7.373 2 2 7.373 2 14c0 2.09.54 4.05 1.48 5.76L2 26l6.4-1.46A11.93 11.93 0 0014 26c6.627 0 12-5.373 12-12S20.627 2 14 2z" fill="white"/><path d="M10.5 8.5c-.3-.7-.6-.7-.9-.71h-.76c-.26 0-.69.1-1.05.5-.36.4-1.38 1.35-1.38 3.28s1.41 3.8 1.61 4.07c.2.26 2.76 4.4 6.8 6 .95.37 1.7.59 2.28.76.96.27 1.83.23 2.52.14.77-.1 2.37-.97 2.7-1.9.34-.94.34-1.74.24-1.91-.1-.17-.37-.27-.78-.47s-2.42-1.19-2.8-1.33c-.37-.13-.64-.2-.91.2-.27.4-1.05 1.33-1.28 1.6-.24.27-.47.3-.88.1-.4-.2-1.7-.63-3.24-2-.12-.11-.24-.22-.35-.34-.97-1.04-1.6-2.28-1.79-2.68-.2-.4-.02-.62.15-.82.15-.18.34-.46.5-.7.17-.23.23-.4.34-.66.12-.27.06-.5-.03-.7z" fill="#25d366"/></svg>
 </a>
 
 <!-- ── ADMIN PASSWORD GATE ── -->
+
 <div class="adm-ov" id="pwGate" style="display:none;align-items:center;justify-content:center">
   <div style="background:#fff;border-radius:10px;padding:36px 32px;width:100%;max-width:360px;box-shadow:0 20px 50px rgba(0,0,0,.25);text-align:center">
     <div style="width:52px;height:52px;background:#edf7f0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 18px">🔐</div>
@@ -711,47 +726,52 @@ footer{
 </div>
 
 <!-- ── OTP RESET SCREEN ── -->
+
 <div class="adm-ov" id="otpGate" style="display:none;align-items:center;justify-content:center">
   <div style="background:#fff;border-radius:10px;padding:36px 32px;width:100%;max-width:360px;box-shadow:0 20px 50px rgba(0,0,0,.25);text-align:center">
     <div style="width:52px;height:52px;background:#edf7f0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 18px">📲</div>
     <h2 style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#1a3d0f;margin-bottom:6px;font-weight:700">Reset Password</h2>
     <p style="font-size:13px;color:#888;margin-bottom:22px;font-weight:300">An OTP will be sent to<br><strong style="color:#1a5c2a">+91 76958 61063</strong></p>
 
-    <!-- Step 1: Send OTP -->
-    <div id="otpStep1">
-      <button onclick="sendOtp()"
-        style="width:100%;background:#1a5c2a;color:#fff;border:none;padding:13px;border-radius:4px;font-size:14px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;margin-bottom:10px">
-        Send OTP →
-      </button>
-      <p id="otpSendMsg" style="font-size:12px;color:#1a5c2a;min-height:18px;margin-bottom:8px"></p>
-      <button onclick="closeOtpGate()"
-        style="width:100%;background:none;border:1px solid #ddd;color:#888;padding:11px;border-radius:4px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer">
-        Cancel
-      </button>
-    </div>
+```
+<!-- Step 1: Send OTP -->
+<div id="otpStep1">
+  <button onclick="sendOtp()"
+    style="width:100%;background:#1a5c2a;color:#fff;border:none;padding:13px;border-radius:4px;font-size:14px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;margin-bottom:10px">
+    Send OTP →
+  </button>
+  <p id="otpSendMsg" style="font-size:12px;color:#1a5c2a;min-height:18px;margin-bottom:8px"></p>
+  <button onclick="closeOtpGate()"
+    style="width:100%;background:none;border:1px solid #ddd;color:#888;padding:11px;border-radius:4px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer">
+    Cancel
+  </button>
+</div>
 
-    <!-- Step 2: Enter OTP + new password -->
-    <div id="otpStep2" style="display:none">
-      <input type="text" id="otpInput" placeholder="Enter 6-digit OTP" maxlength="6"
-        style="width:100%;padding:13px 16px;border:1.5px solid #ddd;border-radius:4px;font-size:18px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:10px;text-align:center;letter-spacing:6px"
-        onfocus="this.style.borderColor='#1a5c2a'" onblur="this.style.borderColor='#ddd'">
-      <input type="password" id="otp_newpw" placeholder="New password"
-        style="width:100%;padding:13px 16px;border:1.5px solid #ddd;border-radius:4px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:10px;text-align:center"
-        onfocus="this.style.borderColor='#1a5c2a'" onblur="this.style.borderColor='#ddd'">
-      <p id="otpErr" style="font-size:12px;color:#c00;min-height:18px;margin-bottom:8px"></p>
-      <button onclick="verifyOtp()"
-        style="width:100%;background:#1a5c2a;color:#fff;border:none;padding:13px;border-radius:4px;font-size:14px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;margin-bottom:10px">
-        Verify &amp; Reset
-      </button>
-      <button onclick="closeOtpGate()"
-        style="width:100%;background:none;border:1px solid #ddd;color:#888;padding:11px;border-radius:4px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer">
-        Cancel
-      </button>
-    </div>
+<!-- Step 2: Enter OTP + new password -->
+<div id="otpStep2" style="display:none">
+  <input type="text" id="otpInput" placeholder="Enter 6-digit OTP" maxlength="6"
+    style="width:100%;padding:13px 16px;border:1.5px solid #ddd;border-radius:4px;font-size:18px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:10px;text-align:center;letter-spacing:6px"
+    onfocus="this.style.borderColor='#1a5c2a'" onblur="this.style.borderColor='#ddd'">
+  <input type="password" id="otp_newpw" placeholder="New password"
+    style="width:100%;padding:13px 16px;border:1.5px solid #ddd;border-radius:4px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:10px;text-align:center"
+    onfocus="this.style.borderColor='#1a5c2a'" onblur="this.style.borderColor='#ddd'">
+  <p id="otpErr" style="font-size:12px;color:#c00;min-height:18px;margin-bottom:8px"></p>
+  <button onclick="verifyOtp()"
+    style="width:100%;background:#1a5c2a;color:#fff;border:none;padding:13px;border-radius:4px;font-size:14px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;margin-bottom:10px">
+    Verify &amp; Reset
+  </button>
+  <button onclick="closeOtpGate()"
+    style="width:100%;background:none;border:1px solid #ddd;color:#888;padding:11px;border-radius:4px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer">
+    Cancel
+  </button>
+</div>
+```
+
   </div>
 </div>
 
 <!-- ── ADMIN PANEL ── -->
+
 <div class="adm-ov" id="adminOverlay">
   <div class="adm-panel">
     <div class="adm-head">
@@ -760,64 +780,69 @@ footer{
     </div>
     <div class="adm-body">
 
-      <div class="adm-sec">
-        <h3>Contact Information</h3>
-        <div class="ar"><input id="a_email" placeholder="Email address" value="KRExpo0212@gmail.com"></div>
-        <div class="ar"><input id="a_phone" placeholder="WhatsApp / Phone" value="+91 XXXXX XXXXX"></div>
-        <div class="ar"><input id="a_location" placeholder="City, State" value="Tamil Nadu, India"></div>
-        <div class="ar"><input id="a_wa" placeholder="WhatsApp number with country code e.g. +919876543210" value=""></div>
-        <button class="asave" onclick="saveContact()">Save Contact Info</button>
-      </div>
+```
+  <div class="adm-sec">
+    <h3>Contact Information</h3>
+    <div class="ar"><input id="a_email" placeholder="Email address" value="KRExpo0212@gmail.com"></div>
+    <div class="ar"><input id="a_phone" placeholder="WhatsApp / Phone" value="+91 XXXXX XXXXX"></div>
+    <div class="ar"><input id="a_location" placeholder="City, State" value="Tamil Nadu, India"></div>
+    <div class="ar"><input id="a_wa" placeholder="WhatsApp number with country code e.g. +919876543210" value=""></div>
+    <button class="asave" onclick="saveContact()">Save Contact Info</button>
+  </div>
 
-      <div class="adm-sec">
-        <h3>About / Owner Bio</h3>
-        <div class="ar"><input id="a_owner" placeholder="Proprietor name" value="Meenal R"></div>
-        <div class="ar"><textarea id="a_bio">Rokis Enterprise is a GST and PAN registered proprietorship under Meenal R, operating in full compliance with Indian export regulations. Rokis Enterprise exports premium Moringa products directly to buyers in UAE and Singapore — built on transparency, compliance, and long-term buyer relationships.</textarea></div>
-        <button class="asave" onclick="saveBio()">Save Bio</button>
-      </div>
+  <div class="adm-sec">
+    <h3>About / Owner Bio</h3>
+    <div class="ar"><input id="a_owner" placeholder="Proprietor name" value="Meenal R"></div>
+    <div class="ar"><textarea id="a_bio">Rokis Enterprise is a GST and PAN registered proprietorship under Meenal R, operating in full compliance with Indian export regulations. Rokis Enterprise exports premium Moringa products directly to buyers in UAE and Singapore — built on transparency, compliance, and long-term buyer relationships.</textarea></div>
+    <button class="asave" onclick="saveBio()">Save Bio</button>
+  </div>
 
-      <div class="adm-sec">
-        <h3>Products</h3>
-        <div class="p-list" id="adminProductList"></div>
-        <div class="add-form">
-          <div class="add-form-title">Add New Product</div>
-          <div class="ar">
-            <input id="p_name" placeholder="Product name">
-            <input id="p_tag" placeholder="Category (e.g. Powder)">
-          </div>
-          <div class="ar"><textarea id="p_desc" placeholder="Description..."></textarea></div>
-          <div class="ar">
-            <input id="p_cert" placeholder="Certifications (e.g. FSSAI, Lab Tested)">
-          </div>
-          <!-- Photo upload -->
-          <div style="margin-bottom:12px">
-            <label style="font-size:12px;color:#555;font-weight:500;display:block;margin-bottom:8px">Product Photo</label>
-            <label for="p_photo" id="photoLabel" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:2px dashed #c8e6cf;border-radius:8px;padding:20px;cursor:pointer;background:#f9fdf9;transition:border .2s">
-              <span class="upload-icon" style="font-size:28px">📷</span>
-              <span class="upload-text" style="font-size:13px;color:#888;text-align:center">Click to upload photo<br><span style="font-size:11px">JPG, PNG, WEBP — max 5MB</span></span>
-              <img id="p_photo_preview" src="" style="display:none;max-height:120px;border-radius:6px;object-fit:cover;max-width:100%">
-            </label>
-            <input type="file" id="p_photo" accept="image/*" style="display:none" onchange="previewPhoto(this)">
-          </div>
-          <button class="asave" onclick="addProduct()">+ Add Product</button>
-        </div>
+  <div class="adm-sec">
+    <h3>Products</h3>
+    <div class="p-list" id="adminProductList"></div>
+    <div class="add-form">
+      <div class="add-form-title">Add New Product</div>
+      <div class="ar">
+        <input id="p_name" placeholder="Product name">
+        <input id="p_tag" placeholder="Category (e.g. Powder)">
       </div>
-
-      <div class="adm-sec">
-        <h3>🔐 Change Password</h3>
-        <div class="ar"><input type="password" id="pw_new" placeholder="New password" autocomplete="new-password"></div>
-        <div class="ar"><input type="password" id="pw_confirm" placeholder="Confirm new password" autocomplete="new-password"></div>
-        <button class="asave" onclick="changePassword()">Update Password</button>
+      <div class="ar"><textarea id="p_desc" placeholder="Description..."></textarea></div>
+      <div class="ar">
+        <input id="p_cert" placeholder="Certifications (e.g. FSSAI, Lab Tested)">
       </div>
-
+      <!-- Photo upload -->
+      <div style="margin-bottom:12px">
+        <label style="font-size:12px;color:#555;font-weight:500;display:block;margin-bottom:8px">Product Photo</label>
+        <label for="p_photo" id="photoLabel" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:2px dashed #c8e6cf;border-radius:8px;padding:20px;cursor:pointer;background:#f9fdf9;transition:border .2s">
+          <span class="upload-icon" style="font-size:28px">📷</span>
+          <span class="upload-text" style="font-size:13px;color:#888;text-align:center">Click to upload photo<br><span style="font-size:11px">JPG, PNG, WEBP — max 5MB</span></span>
+          <img id="p_photo_preview" src="" style="display:none;max-height:120px;border-radius:6px;object-fit:cover;max-width:100%">
+        </label>
+        <input type="file" id="p_photo" accept="image/*" style="display:none" onchange="previewPhoto(this)">
+      </div>
+      <button class="asave" onclick="addProduct()">+ Add Product</button>
     </div>
+  </div>
+
+  <div class="adm-sec">
+    <h3>🔐 Change Password</h3>
+    <div class="ar"><input type="password" id="pw_new" placeholder="New password" autocomplete="new-password"></div>
+    <div class="ar"><input type="password" id="pw_confirm" placeholder="Confirm new password" autocomplete="new-password"></div>
+    <button class="asave" onclick="changePassword()">Update Password</button>
+  </div>
+
+</div>
+```
+
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <!-- Supabase SDK -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 /* ════════════════════════════════════════════════
    SUPABASE CONFIG
@@ -1144,18 +1169,26 @@ async function submitEnquiry(){
   var btn=document.querySelector('.form-submit');
   btn.textContent='Sending…'; btn.disabled=true;
 
+  var company = document.getElementById('cCompany').value.trim();
+  var phone   = document.getElementById('cPhone').value.trim();
+  var country = document.getElementById('cCountry').value;
+  var product = document.getElementById('cProduct').value;
+  var qty     = document.getElementById('cQty').value.trim();
+  var msg     = document.getElementById('cMsg').value.trim();
+
   var formData={
     name:    n,
-    company: document.getElementById('cCompany').value.trim(),
+    company: company,
     email:   e,
-    phone:   document.getElementById('cPhone').value.trim(),
-    country: document.getElementById('cCountry').value,
-    product: document.getElementById('cProduct').value,
-    qty:     document.getElementById('cQty').value.trim(),
-    message: document.getElementById('cMsg').value.trim(),
+    phone:   phone,
+    country: country,
+    product: product,
+    qty:     qty,
+    message: msg,
     _subject:'New Enquiry from '+n+' — Rokis Enterprise Website'
   };
 
+  /* ── STEP 1: Send to Gmail via Formspree ── */
   if(FORMSPREE_URL && FORMSPREE_URL !== 'PASTE_YOUR_FORMSPREE_URL'){
     try{
       var res=await fetch(FORMSPREE_URL,{
@@ -1164,19 +1197,23 @@ async function submitEnquiry(){
         body:JSON.stringify(formData)
       });
       var data=await res.json();
-      if(data.ok){
-        showToast('✓ Enquiry sent! We will reply within 24 hours.');
-      } else {
-        showToast('✓ Enquiry received! We will reply within 24 hours.');
-      }
-    }catch(err){
-      showToast('✓ Enquiry received! We will reply within 24 hours.');
-    }
-  } else {
-    /* Formspree not set up yet — still show success */
-    showToast('✓ Enquiry received! We will reply within 24 hours.');
+    }catch(err){}
   }
 
+  /* ── STEP 2: Open WhatsApp with full enquiry details ── */
+  var waText = '🌿 *New Enquiry — Rokis Enterprise*%0A%0A'
+    + '*Name:* ' + encodeURIComponent(n) + '%0A'
+    + '*Company:* ' + encodeURIComponent(company||'—') + '%0A'
+    + '*Email:* ' + encodeURIComponent(e) + '%0A'
+    + '*Phone:* ' + encodeURIComponent(phone||'—') + '%0A'
+    + '*Country:* ' + encodeURIComponent(country||'—') + '%0A'
+    + '*Product:* ' + encodeURIComponent(product||'—') + '%0A'
+    + '*Quantity:* ' + encodeURIComponent(qty||'—') + '%0A'
+    + '*Message:* ' + encodeURIComponent(msg||'—');
+
+  window.open('https://wa.me/917695861063?text=' + waText, '_blank');
+
+  showToast('✓ Enquiry sent to WhatsApp and Email!');
   btn.textContent='Send Enquiry →'; btn.disabled=false;
   ['cName','cCompany','cEmail','cPhone','cQty','cMsg'].forEach(function(id){ document.getElementById(id).value=''; });
   document.getElementById('cCountry').selectedIndex=0;
@@ -1278,6 +1315,7 @@ async function verifyOtp(){
 ════════════════════════════════════════════════ */
 loadAll().then(function(){ startRealtime(); });
 </script>
+
 </body>
 </html>
 <script>
@@ -1301,38 +1339,38 @@ var db      = firebase.database();
 var storage = firebase.storage();
 
 /* ── Show a banner until Firebase is configured ── */
-var FB_CONFIGURED = FIREBASE_CONFIG.apiKey !== "PASTE_YOUR_apiKey_HERE";
+var FB_CONFIGURED = FIREBASE_CONFIG.apiKey !== “PASTE_YOUR_apiKey_HERE”;
 if(!FB_CONFIGURED){
-  var banner = document.createElement('div');
-  banner.id  = 'fbBanner';
-  banner.innerHTML = '⚠️ <strong>Firebase not connected yet.</strong> Data is temporary. <a href="#" onclick="document.getElementById(\'fbBanner\').style.display=\'none\';return false" style="color:#fff;margin-left:8px">Dismiss</a>';
-  banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#b8860b;color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-family:sans-serif';
-  document.body.prepend(banner);
+var banner = document.createElement(‘div’);
+banner.id  = ‘fbBanner’;
+banner.innerHTML = ‘⚠️ <strong>Firebase not connected yet.</strong> Data is temporary. <a href="#" onclick="document.getElementById(\'fbBanner\').style.display=\'none\';return false" style="color:#fff;margin-left:8px">Dismiss</a>’;
+banner.style.cssText = ‘position:fixed;top:0;left:0;right:0;z-index:9999;background:#b8860b;color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-family:sans-serif’;
+document.body.prepend(banner);
 }
 
 /* ════════════════════════════════════════
-   LOCAL FALLBACK (used when Firebase
-   is not yet configured)
+LOCAL FALLBACK (used when Firebase
+is not yet configured)
 ════════════════════════════════════════ */
 var LS = {
-  get: function(k,def){ try{ var v=localStorage.getItem(k); return v!==null?JSON.parse(v):def; }catch(e){ return def; }},
-  set: function(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+get: function(k,def){ try{ var v=localStorage.getItem(k); return v!==null?JSON.parse(v):def; }catch(e){ return def; }},
+set: function(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 };
 
 /* ════════════════════════════════════════
-   DEFAULT DATA (first-time only)
+DEFAULT DATA (first-time only)
 ════════════════════════════════════════ */
 var DEFAULT_PRODUCTS = [
-  {id:1,name:'Moringa Leaf Powder',  emoji:'🌿',tag:'Powder',      photo:'',desc:'100% pure dried Moringa leaf powder. Rich in vitamins A, C, E, iron and protein. Suitable for food, beverage and supplement manufacturing.',cert:'FSSAI · Lab Tested'},
-  {id:2,name:'Moringa Dried Leaves', emoji:'🍃',tag:'Dried Leaves', photo:'',desc:'Sun-dried or shade-dried Moringa leaves retaining maximum nutritional content. Popular for herbal teas, culinary use and nutraceuticals.',cert:'Natural · Pesticide Screened'},
-  {id:3,name:'Moringa Seeds',        emoji:'🫘',tag:'Seeds',        photo:'',desc:'Export-grade Moringa seeds, cleaned and size-sorted. Used for water purification, oil pressing and agricultural planting.',cert:'Farm Grade · Sorted'},
-  {id:4,name:'Moringa Seed Oil',     emoji:'💧',tag:'Oil',          photo:'',desc:'Cold-pressed Moringa seed oil (Ben Oil). Premium purity for cosmetic, culinary and pharmaceutical applications.',cert:'Cold Pressed · Pure'},
-  {id:5,name:'Moringa Seed Cake',    emoji:'🟤',tag:'By-product',   photo:'',desc:'Post-extraction Moringa seed cake. Protein-rich and suitable for animal feed and organic fertilizer applications.',cert:'Bulk · By-product'},
-  {id:6,name:'OEM / Private Label',  emoji:'💊',tag:'Private Label',photo:'',desc:'White-label Moringa capsule and product manufacturing for supplement brands entering UAE and Singapore markets.',cert:'Custom Label · Flexible MOQ'}
+{id:1,name:‘Moringa Leaf Powder’,  emoji:‘🌿’,tag:‘Powder’,      photo:’’,desc:‘100% pure dried Moringa leaf powder. Rich in vitamins A, C, E, iron and protein. Suitable for food, beverage and supplement manufacturing.’,cert:‘FSSAI · Lab Tested’},
+{id:2,name:‘Moringa Dried Leaves’, emoji:‘🍃’,tag:‘Dried Leaves’, photo:’’,desc:‘Sun-dried or shade-dried Moringa leaves retaining maximum nutritional content. Popular for herbal teas, culinary use and nutraceuticals.’,cert:‘Natural · Pesticide Screened’},
+{id:3,name:‘Moringa Seeds’,        emoji:‘🫘’,tag:‘Seeds’,        photo:’’,desc:‘Export-grade Moringa seeds, cleaned and size-sorted. Used for water purification, oil pressing and agricultural planting.’,cert:‘Farm Grade · Sorted’},
+{id:4,name:‘Moringa Seed Oil’,     emoji:‘💧’,tag:‘Oil’,          photo:’’,desc:‘Cold-pressed Moringa seed oil (Ben Oil). Premium purity for cosmetic, culinary and pharmaceutical applications.’,cert:‘Cold Pressed · Pure’},
+{id:5,name:‘Moringa Seed Cake’,    emoji:‘🟤’,tag:‘By-product’,   photo:’’,desc:‘Post-extraction Moringa seed cake. Protein-rich and suitable for animal feed and organic fertilizer applications.’,cert:‘Bulk · By-product’},
+{id:6,name:‘OEM / Private Label’,  emoji:‘💊’,tag:‘Private Label’,photo:’’,desc:‘White-label Moringa capsule and product manufacturing for supplement brands entering UAE and Singapore markets.’,cert:‘Custom Label · Flexible MOQ’}
 ];
-var DEFAULT_CONTACT = {email:'KRExpo0212@gmail.com',phone:'+91 76958 61063',location:'Tamil Nadu, India',wa:'917695861063'};
-var DEFAULT_BIO     = {owner:'Meenal R',bio:'Rokis Enterprise is a GST and PAN registered proprietorship under Meenal R, operating in full compliance with Indian export regulations. Rokis Enterprise exports premium Moringa products directly to buyers in UAE and Singapore — built on transparency, compliance, and long-term buyer relationships.'};
-var DEFAULT_PW      = 'Sangeetha@29';
+var DEFAULT_CONTACT = {email:‘KRExpo0212@gmail.com’,phone:’+91 76958 61063’,location:‘Tamil Nadu, India’,wa:‘917695861063’};
+var DEFAULT_BIO     = {owner:‘Meenal R’,bio:‘Rokis Enterprise is a GST and PAN registered proprietorship under Meenal R, operating in full compliance with Indian export regulations. Rokis Enterprise exports premium Moringa products directly to buyers in UAE and Singapore — built on transparency, compliance, and long-term buyer relationships.’};
+var DEFAULT_PW      = ‘Sangeetha@29’;
 
 /* In-memory state */
 var products    = [];
@@ -1341,410 +1379,411 @@ var savedContact = Object.assign({}, DEFAULT_CONTACT);
 var savedBio     = Object.assign({}, DEFAULT_BIO);
 
 /* ════════════════════════════════════════
-   FIREBASE READ HELPERS
+FIREBASE READ HELPERS
 ════════════════════════════════════════ */
 function fbGet(path, cb){
-  if(!FB_CONFIGURED){ cb(null); return; }
-  db.ref(path).get().then(function(snap){ cb(snap.exists()?snap.val():null); }).catch(function(){ cb(null); });
+if(!FB_CONFIGURED){ cb(null); return; }
+db.ref(path).get().then(function(snap){ cb(snap.exists()?snap.val():null); }).catch(function(){ cb(null); });
 }
 function fbSet(path, val, okMsg){
-  if(!FB_CONFIGURED){
-    showToast(okMsg+' (local only — connect Firebase to sync all devices)');
-    return;
-  }
-  db.ref(path).set(val)
-    .then(function(){ showToast(okMsg); })
-    .catch(function(e){ showToast('Save failed: '+e.message); });
+if(!FB_CONFIGURED){
+showToast(okMsg+’ (local only — connect Firebase to sync all devices)’);
+return;
+}
+db.ref(path).set(val)
+.then(function(){ showToast(okMsg); })
+.catch(function(e){ showToast(’Save failed: ’+e.message); });
 }
 
 /* ════════════════════════════════════════
-   REAL-TIME LISTENERS — runs on every
-   device automatically when data changes
+REAL-TIME LISTENERS — runs on every
+device automatically when data changes
 ════════════════════════════════════════ */
 function startListeners(){
-  if(!FB_CONFIGURED) return;
+if(!FB_CONFIGURED) return;
 
-  /* Products */
-  db.ref('products').on('value', function(snap){
-    if(snap.exists()){
-      var obj = snap.val();
-      products = Object.keys(obj).map(function(k){ return obj[k]; });
-    } else {
-      products = DEFAULT_PRODUCTS;
-    }
-    renderProducts();
-  });
+/* Products */
+db.ref(‘products’).on(‘value’, function(snap){
+if(snap.exists()){
+var obj = snap.val();
+products = Object.keys(obj).map(function(k){ return obj[k]; });
+} else {
+products = DEFAULT_PRODUCTS;
+}
+renderProducts();
+});
 
-  /* Contact */
-  db.ref('contact').on('value', function(snap){
-    savedContact = snap.exists() ? snap.val() : DEFAULT_CONTACT;
-    applyContact();
-  });
+/* Contact */
+db.ref(‘contact’).on(‘value’, function(snap){
+savedContact = snap.exists() ? snap.val() : DEFAULT_CONTACT;
+applyContact();
+});
 
-  /* Bio */
-  db.ref('bio').on('value', function(snap){
-    savedBio = snap.exists() ? snap.val() : DEFAULT_BIO;
-    applyBio();
-  });
+/* Bio */
+db.ref(‘bio’).on(‘value’, function(snap){
+savedBio = snap.exists() ? snap.val() : DEFAULT_BIO;
+applyBio();
+});
 
-  /* Password */
-  db.ref('pw').on('value', function(snap){
-    if(snap.exists()) ADMIN_PW = snap.val();
-  });
+/* Password */
+db.ref(‘pw’).on(‘value’, function(snap){
+if(snap.exists()) ADMIN_PW = snap.val();
+});
 }
 
 /* ════════════════════════════════════════
-   APPLY DATA TO PAGE
+APPLY DATA TO PAGE
 ════════════════════════════════════════ */
 function applyContact(){
-  document.getElementById('contactEmail').textContent    = savedContact.email    || '';
-  document.getElementById('contactPhone').textContent    = savedContact.phone    || '';
-  document.getElementById('contactLocation').textContent = savedContact.location || '';
-  if(savedContact.wa) document.getElementById('waBtn').href = 'https://wa.me/'+savedContact.wa;
-  document.getElementById('a_email').value    = savedContact.email    || '';
-  document.getElementById('a_phone').value    = savedContact.phone    || '';
-  document.getElementById('a_location').value = savedContact.location || '';
-  document.getElementById('a_wa').value       = savedContact.wa       || '';
+document.getElementById(‘contactEmail’).textContent    = savedContact.email    || ‘’;
+document.getElementById(‘contactPhone’).textContent    = savedContact.phone    || ‘’;
+document.getElementById(‘contactLocation’).textContent = savedContact.location || ‘’;
+if(savedContact.wa) document.getElementById(‘waBtn’).href = ‘https://wa.me/’+savedContact.wa;
+document.getElementById(‘a_email’).value    = savedContact.email    || ‘’;
+document.getElementById(‘a_phone’).value    = savedContact.phone    || ‘’;
+document.getElementById(‘a_location’).value = savedContact.location || ‘’;
+document.getElementById(‘a_wa’).value       = savedContact.wa       || ‘’;
 }
 function applyBio(){
-  document.getElementById('ownerName').textContent = savedBio.owner || '';
-  document.getElementById('ownerBio').textContent  = savedBio.bio   || '';
-  document.getElementById('a_owner').value = savedBio.owner || '';
-  document.getElementById('a_bio').value   = savedBio.bio   || '';
+document.getElementById(‘ownerName’).textContent = savedBio.owner || ‘’;
+document.getElementById(‘ownerBio’).textContent  = savedBio.bio   || ‘’;
+document.getElementById(‘a_owner’).value = savedBio.owner || ‘’;
+document.getElementById(‘a_bio’).value   = savedBio.bio   || ‘’;
 }
 
 /* ════════════════════════════════════════
-   PRODUCT RENDERING
+PRODUCT RENDERING
 ════════════════════════════════════════ */
 function renderProducts(){
-  var g = document.getElementById('productGrid');
-  if(!products.length){
-    g.innerHTML='<div style="padding:48px;text-align:center;color:#aaa;font-size:15px;grid-column:1/-1">No products yet. Add from Admin panel.</div>';
-    renderAdminList(); return;
-  }
-  g.innerHTML = products.map(function(p){
-    var imgHtml = (p.photo && p.photo.length > 4)
-      ? '<div class="pcard-photo-wrap"><img class="pcard-photo" src="'+p.photo+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\'"></div>'
-      : '<div class="pcard-photo-wrap" style="display:flex;align-items:center;justify-content:center;background:var(--green-pale);height:200px"><span style="font-size:56px">'+(p.emoji||'🌿')+'</span></div>';
-    return '<div class="pcard" tabindex="0">'+imgHtml
-      +'<div class="pcard-body">'
-      +'<span class="pcard-tag">'+(p.tag||'')+'</span>'
-      +'<h3>'+(p.name||'')+'</h3>'
-      +'<p>'+(p.desc||'')+'</p>'
-      +'<div class="pcard-foot"><span class="pcard-cert">'+(p.cert||'')+'</span>'
-      +'<a class="pcard-enq" href="#contact">Enquire →</a></div>'
-      +'</div></div>';
-  }).join('');
-  var s = document.getElementById('cProduct'), v = s.value;
-  s.innerHTML = '<option value="">Product Interested In</option>'
-    + products.map(function(p){ return '<option>'+(p.name||'')+'</option>'; }).join('');
-  if(v) s.value = v;
-  renderAdminList();
+var g = document.getElementById(‘productGrid’);
+if(!products.length){
+g.innerHTML=’<div style="padding:48px;text-align:center;color:#aaa;font-size:15px;grid-column:1/-1">No products yet. Add from Admin panel.</div>’;
+renderAdminList(); return;
+}
+g.innerHTML = products.map(function(p){
+var imgHtml = (p.photo && p.photo.length > 4)
+? ‘<div class="pcard-photo-wrap"><img class="pcard-photo" src="'+p.photo+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\'"></div>’
+: ‘<div class="pcard-photo-wrap" style="display:flex;align-items:center;justify-content:center;background:var(--green-pale);height:200px"><span style="font-size:56px">’+(p.emoji||‘🌿’)+’</span></div>’;
+return ‘<div class="pcard" tabindex="0">’+imgHtml
++’<div class="pcard-body">’
++’<span class="pcard-tag">’+(p.tag||’’)+’</span>’
++’<h3>’+(p.name||’’)+’</h3>’
++’<p>’+(p.desc||’’)+’</p>’
++’<div class="pcard-foot"><span class="pcard-cert">’+(p.cert||’’)+’</span>’
++’<a class="pcard-enq" href="#contact">Enquire →</a></div>’
++’</div></div>’;
+}).join(’’);
+var s = document.getElementById(‘cProduct’), v = s.value;
+s.innerHTML = ‘<option value="">Product Interested In</option>’
++ products.map(function(p){ return ‘<option>’+(p.name||’’)+’</option>’; }).join(’’);
+if(v) s.value = v;
+renderAdminList();
 }
 
 function renderAdminList(){
-  var l = document.getElementById('adminProductList');
-  if(!l) return;
-  if(!products.length){
-    l.innerHTML='<p style="font-size:13px;color:#aaa;padding:8px 0">No products yet.</p>'; return;
-  }
-  l.innerHTML = products.map(function(p){
-    var thumb = (p.photo && p.photo.length > 4)
-      ? '<img src="'+p.photo+'" style="width:40px;height:40px;border-radius:4px;object-fit:cover;flex-shrink:0">'
-      : '<div style="width:40px;height:40px;border-radius:4px;background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">'+(p.emoji||'🌿')+'</div>';
-    return '<div class="p-item">'+thumb
-      +'<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(p.name||'')+'</span>'
-      +'<span class="p-sm-tag">'+(p.tag||'')+'</span>'
-      +'<button class="del-btn" onclick="delProduct(\''+p.id+'\')">Delete</button></div>';
-  }).join('');
+var l = document.getElementById(‘adminProductList’);
+if(!l) return;
+if(!products.length){
+l.innerHTML=’<p style="font-size:13px;color:#aaa;padding:8px 0">No products yet.</p>’; return;
+}
+l.innerHTML = products.map(function(p){
+var thumb = (p.photo && p.photo.length > 4)
+? ‘<img src="'+p.photo+'" style="width:40px;height:40px;border-radius:4px;object-fit:cover;flex-shrink:0">’
+: ‘<div style="width:40px;height:40px;border-radius:4px;background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">’+(p.emoji||‘🌿’)+’</div>’;
+return ‘<div class="p-item">’+thumb
++’<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">’+(p.name||’’)+’</span>’
++’<span class="p-sm-tag">’+(p.tag||’’)+’</span>’
++’<button class="del-btn" onclick="delProduct(\''+p.id+'\')">Delete</button></div>’;
+}).join(’’);
 }
 
 /* ════════════════════════════════════════
-   PHOTO UPLOAD
+PHOTO UPLOAD
 ════════════════════════════════════════ */
 function previewPhoto(input){
-  var file = input.files[0];
-  if(!file) return;
-  if(file.size > 5*1024*1024){ showToast('Photo too large. Max 5MB.'); input.value=''; return; }
-  var reader = new FileReader();
-  reader.onload = function(e){
-    var prev = document.getElementById('p_photo_preview');
-    prev.src = e.target.result;
-    prev.style.display = 'block';
-    var lbl = document.getElementById('photoLabel');
-    lbl.querySelector('.upload-icon').style.display = 'none';
-    lbl.querySelector('.upload-text').style.display = 'none';
-    lbl.style.borderColor = '#1a5c2a';
-    lbl.style.background  = '#f0faf3';
-  };
-  reader.readAsDataURL(file);
+var file = input.files[0];
+if(!file) return;
+if(file.size > 5*1024*1024){ showToast(‘Photo too large. Max 5MB.’); input.value=’’; return; }
+var reader = new FileReader();
+reader.onload = function(e){
+var prev = document.getElementById(‘p_photo_preview’);
+prev.src = e.target.result;
+prev.style.display = ‘block’;
+var lbl = document.getElementById(‘photoLabel’);
+lbl.querySelector(’.upload-icon’).style.display = ‘none’;
+lbl.querySelector(’.upload-text’).style.display = ‘none’;
+lbl.style.borderColor = ‘#1a5c2a’;
+lbl.style.background  = ‘#f0faf3’;
+};
+reader.readAsDataURL(file);
 }
 
 /* Upload photo to Firebase Storage, get public URL */
 function uploadPhotoAndAdd(productData){
-  var file = document.getElementById('p_photo').files[0];
-  if(!file || !FB_CONFIGURED){
-    /* No file or no Firebase — use base64 preview directly */
-    var prev = document.getElementById('p_photo_preview');
-    productData.photo = (prev && prev.style.display!=='none' && prev.src.indexOf('data:')===0) ? prev.src : '';
-    saveProductToFirebase(productData);
-    return;
-  }
-  showToast('Uploading photo…');
-  var ref = storage.ref('products/'+Date.now()+'_'+file.name);
-  ref.put(file).then(function(){
-    return ref.getDownloadURL();
-  }).then(function(url){
-    productData.photo = url;
-    saveProductToFirebase(productData);
-  }).catch(function(e){
-    showToast('Photo upload failed. Saving without photo.');
-    productData.photo = '';
-    saveProductToFirebase(productData);
-  });
+var file = document.getElementById(‘p_photo’).files[0];
+if(!file || !FB_CONFIGURED){
+/* No file or no Firebase — use base64 preview directly */
+var prev = document.getElementById(‘p_photo_preview’);
+productData.photo = (prev && prev.style.display!==‘none’ && prev.src.indexOf(‘data:’)===0) ? prev.src : ‘’;
+saveProductToFirebase(productData);
+return;
+}
+showToast(‘Uploading photo…’);
+var ref = storage.ref(‘products/’+Date.now()+’_’+file.name);
+ref.put(file).then(function(){
+return ref.getDownloadURL();
+}).then(function(url){
+productData.photo = url;
+saveProductToFirebase(productData);
+}).catch(function(e){
+showToast(‘Photo upload failed. Saving without photo.’);
+productData.photo = ‘’;
+saveProductToFirebase(productData);
+});
 }
 
 function saveProductToFirebase(productData){
-  if(!FB_CONFIGURED){
-    products.push(productData);
-    renderProducts();
-    showToast('✓ Product added (local only — connect Firebase to sync).');
-    resetProductForm(); return;
-  }
-  db.ref('products/'+productData.id).set(productData)
-    .then(function(){ showToast('✓ Product saved — visible on all devices!'); resetProductForm(); })
-    .catch(function(e){ showToast('Error: '+e.message); });
+if(!FB_CONFIGURED){
+products.push(productData);
+renderProducts();
+showToast(‘✓ Product added (local only — connect Firebase to sync).’);
+resetProductForm(); return;
+}
+db.ref(‘products/’+productData.id).set(productData)
+.then(function(){ showToast(‘✓ Product saved — visible on all devices!’); resetProductForm(); })
+.catch(function(e){ showToast(’Error: ’+e.message); });
 }
 
 function resetProductForm(){
-  ['p_name','p_desc','p_tag','p_cert'].forEach(function(id){ document.getElementById(id).value=''; });
-  document.getElementById('p_photo').value = '';
-  var prev = document.getElementById('p_photo_preview');
-  if(prev){ prev.src=''; prev.style.display='none'; }
-  var lbl = document.getElementById('photoLabel');
-  if(lbl){
-    var ic=lbl.querySelector('.upload-icon'), tx=lbl.querySelector('.upload-text');
-    if(ic) ic.style.display=''; if(tx) tx.style.display='';
-    lbl.style.borderColor='#c8e6cf'; lbl.style.background='#f9fdf9';
-  }
+[‘p_name’,‘p_desc’,‘p_tag’,‘p_cert’].forEach(function(id){ document.getElementById(id).value=’’; });
+document.getElementById(‘p_photo’).value = ‘’;
+var prev = document.getElementById(‘p_photo_preview’);
+if(prev){ prev.src=’’; prev.style.display=‘none’; }
+var lbl = document.getElementById(‘photoLabel’);
+if(lbl){
+var ic=lbl.querySelector(’.upload-icon’), tx=lbl.querySelector(’.upload-text’);
+if(ic) ic.style.display=’’; if(tx) tx.style.display=’’;
+lbl.style.borderColor=’#c8e6cf’; lbl.style.background=’#f9fdf9’;
+}
 }
 
 /* ════════════════════════════════════════
-   PRODUCT CRUD
+PRODUCT CRUD
 ════════════════════════════════════════ */
 function delProduct(id){
-  if(!FB_CONFIGURED){
-    products = products.filter(function(p){ return String(p.id)!==String(id); });
-    renderProducts(); showToast('Product removed.'); return;
-  }
-  db.ref('products/'+id).remove()
-    .then(function(){ showToast('Product removed from all devices.'); })
-    .catch(function(e){ showToast('Error: '+e.message); });
+if(!FB_CONFIGURED){
+products = products.filter(function(p){ return String(p.id)!==String(id); });
+renderProducts(); showToast(‘Product removed.’); return;
+}
+db.ref(‘products/’+id).remove()
+.then(function(){ showToast(‘Product removed from all devices.’); })
+.catch(function(e){ showToast(’Error: ’+e.message); });
 }
 
 function addProduct(){
-  var n = document.getElementById('p_name').value.trim();
-  if(!n){ showToast('Please enter a product name.'); return; }
-  var productData = {
-    id:    Date.now(),
-    name:  n,
-    emoji: '🌿',
-    tag:   document.getElementById('p_tag').value.trim()  || 'Product',
-    desc:  document.getElementById('p_desc').value.trim() || '',
-    cert:  document.getElementById('p_cert').value.trim() || '',
-    photo: ''
-  };
-  uploadPhotoAndAdd(productData);
+var n = document.getElementById(‘p_name’).value.trim();
+if(!n){ showToast(‘Please enter a product name.’); return; }
+var productData = {
+id:    Date.now(),
+name:  n,
+emoji: ‘🌿’,
+tag:   document.getElementById(‘p_tag’).value.trim()  || ‘Product’,
+desc:  document.getElementById(‘p_desc’).value.trim() || ‘’,
+cert:  document.getElementById(‘p_cert’).value.trim() || ‘’,
+photo: ‘’
+};
+uploadPhotoAndAdd(productData);
 }
 
 /* ════════════════════════════════════════
-   SAVE CONTACT & BIO
+SAVE CONTACT & BIO
 ════════════════════════════════════════ */
 function saveContact(){
-  var data = {
-    email:    document.getElementById('a_email').value.trim(),
-    phone:    document.getElementById('a_phone').value.trim(),
-    location: document.getElementById('a_location').value.trim(),
-    wa:       document.getElementById('a_wa').value.trim().replace(/[^0-9]/g,'')
-  };
-  if(FB_CONFIGURED){
-    fbSet('contact', data, '✓ Contact saved — updated on all devices!');
-  } else {
-    savedContact = data;
-    LS.set('re_contact', data);
-    applyContact();
-    showToast('✓ Contact saved (local only — connect Firebase to sync).');
-  }
+var data = {
+email:    document.getElementById(‘a_email’).value.trim(),
+phone:    document.getElementById(‘a_phone’).value.trim(),
+location: document.getElementById(‘a_location’).value.trim(),
+wa:       document.getElementById(‘a_wa’).value.trim().replace(/[^0-9]/g,’’)
+};
+if(FB_CONFIGURED){
+fbSet(‘contact’, data, ‘✓ Contact saved — updated on all devices!’);
+} else {
+savedContact = data;
+LS.set(‘re_contact’, data);
+applyContact();
+showToast(‘✓ Contact saved (local only — connect Firebase to sync).’);
+}
 }
 
 function saveBio(){
-  var data = {
-    owner: document.getElementById('a_owner').value.trim(),
-    bio:   document.getElementById('a_bio').value.trim()
-  };
-  if(FB_CONFIGURED){
-    fbSet('bio', data, '✓ Bio saved — updated on all devices!');
-  } else {
-    savedBio = data;
-    LS.set('re_bio', data);
-    applyBio();
-    showToast('✓ Bio saved (local only — connect Firebase to sync).');
-  }
+var data = {
+owner: document.getElementById(‘a_owner’).value.trim(),
+bio:   document.getElementById(‘a_bio’).value.trim()
+};
+if(FB_CONFIGURED){
+fbSet(‘bio’, data, ‘✓ Bio saved — updated on all devices!’);
+} else {
+savedBio = data;
+LS.set(‘re_bio’, data);
+applyBio();
+showToast(‘✓ Bio saved (local only — connect Firebase to sync).’);
+}
 }
 
 /* ════════════════════════════════════════
-   CHANGE PASSWORD
+CHANGE PASSWORD
 ════════════════════════════════════════ */
 function changePassword(){
-  var np = document.getElementById('pw_new').value;
-  var cp = document.getElementById('pw_confirm').value;
-  if(!np){ showToast('Please enter a new password.'); return; }
-  if(np.length<6){ showToast('Password must be at least 6 characters.'); return; }
-  if(np!==cp){ showToast('Passwords do not match.'); return; }
-  if(FB_CONFIGURED){
-    fbSet('pw', np, '✓ Password updated on all devices!');
-    ADMIN_PW = np;
-  } else {
-    ADMIN_PW = np;
-    LS.set('re_pw', np);
-    showToast('✓ Password updated (local only).');
-  }
-  document.getElementById('pw_new').value='';
-  document.getElementById('pw_confirm').value='';
+var np = document.getElementById(‘pw_new’).value;
+var cp = document.getElementById(‘pw_confirm’).value;
+if(!np){ showToast(‘Please enter a new password.’); return; }
+if(np.length<6){ showToast(‘Password must be at least 6 characters.’); return; }
+if(np!==cp){ showToast(‘Passwords do not match.’); return; }
+if(FB_CONFIGURED){
+fbSet(‘pw’, np, ‘✓ Password updated on all devices!’);
+ADMIN_PW = np;
+} else {
+ADMIN_PW = np;
+LS.set(‘re_pw’, np);
+showToast(‘✓ Password updated (local only).’);
+}
+document.getElementById(‘pw_new’).value=’’;
+document.getElementById(‘pw_confirm’).value=’’;
 }
 
 /* ════════════════════════════════════════
-   ENQUIRY FORM
+ENQUIRY FORM
 ════════════════════════════════════════ */
 function submitEnquiry(){
-  var n = document.getElementById('cName').value.trim();
-  var e = document.getElementById('cEmail').value.trim();
-  if(!n||!e){ showToast('Please fill Name and Email.'); return; }
-  showToast('✓ Enquiry sent! We reply within 24 hours.');
-  ['cName','cCompany','cEmail','cPhone','cQty','cMsg'].forEach(function(id){ document.getElementById(id).value=''; });
-  document.getElementById('cCountry').selectedIndex=0;
-  document.getElementById('cProduct').selectedIndex=0;
+var n = document.getElementById(‘cName’).value.trim();
+var e = document.getElementById(‘cEmail’).value.trim();
+if(!n||!e){ showToast(‘Please fill Name and Email.’); return; }
+showToast(‘✓ Enquiry sent! We reply within 24 hours.’);
+[‘cName’,‘cCompany’,‘cEmail’,‘cPhone’,‘cQty’,‘cMsg’].forEach(function(id){ document.getElementById(id).value=’’; });
+document.getElementById(‘cCountry’).selectedIndex=0;
+document.getElementById(‘cProduct’).selectedIndex=0;
 }
 
 /* ════════════════════════════════════════
-   TOAST
+TOAST
 ════════════════════════════════════════ */
 function showToast(msg){
-  var t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(function(){ t.classList.remove('show'); }, 3600);
+var t = document.getElementById(‘toast’);
+t.textContent = msg; t.classList.add(‘show’);
+setTimeout(function(){ t.classList.remove(‘show’); }, 3600);
 }
 
 /* ════════════════════════════════════════
-   NAV
+NAV
 ════════════════════════════════════════ */
 function toggleMenu(){
-  var m=document.getElementById('mobileMenu'), h=document.getElementById('hamBtn');
-  m.classList.toggle('open'); h.classList.toggle('open');
-  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+var m=document.getElementById(‘mobileMenu’), h=document.getElementById(‘hamBtn’);
+m.classList.toggle(‘open’); h.classList.toggle(‘open’);
+document.body.style.overflow=m.classList.contains(‘open’)?‘hidden’:’’;
 }
 function closeMenu(){
-  document.getElementById('mobileMenu').classList.remove('open');
-  document.getElementById('hamBtn').classList.remove('open');
-  document.body.style.overflow='';
+document.getElementById(‘mobileMenu’).classList.remove(‘open’);
+document.getElementById(‘hamBtn’).classList.remove(‘open’);
+document.body.style.overflow=’’;
 }
 
 /* ════════════════════════════════════════
-   ADMIN PASSWORD GATE
+ADMIN PASSWORD GATE
 ════════════════════════════════════════ */
 function openAdmin(){
-  document.getElementById('pwInput').value='';
-  document.getElementById('pwErr').textContent='';
-  document.getElementById('pwGate').style.display='flex';
-  setTimeout(function(){ document.getElementById('pwInput').focus(); },100);
+document.getElementById(‘pwInput’).value=’’;
+document.getElementById(‘pwErr’).textContent=’’;
+document.getElementById(‘pwGate’).style.display=‘flex’;
+setTimeout(function(){ document.getElementById(‘pwInput’).focus(); },100);
 }
-function closePwGate(){ document.getElementById('pwGate').style.display='none'; }
+function closePwGate(){ document.getElementById(‘pwGate’).style.display=‘none’; }
 function checkPw(){
-  var val = document.getElementById('pwInput').value;
-  if(val===ADMIN_PW){
-    document.getElementById('pwGate').style.display='none';
-    document.getElementById('adminOverlay').classList.add('active');
-    document.getElementById('pwInput').value='';
-  } else {
-    document.getElementById('pwErr').textContent='Incorrect password. Try again.';
-    document.getElementById('pwInput').value='';
-    document.getElementById('pwInput').focus();
-  }
+var val = document.getElementById(‘pwInput’).value;
+if(val===ADMIN_PW){
+document.getElementById(‘pwGate’).style.display=‘none’;
+document.getElementById(‘adminOverlay’).classList.add(‘active’);
+document.getElementById(‘pwInput’).value=’’;
+} else {
+document.getElementById(‘pwErr’).textContent=‘Incorrect password. Try again.’;
+document.getElementById(‘pwInput’).value=’’;
+document.getElementById(‘pwInput’).focus();
 }
-function closeAdmin(){ document.getElementById('adminOverlay').classList.remove('active'); }
-document.getElementById('adminOverlay').addEventListener('click',function(e){ if(e.target===this) closeAdmin(); });
+}
+function closeAdmin(){ document.getElementById(‘adminOverlay’).classList.remove(‘active’); }
+document.getElementById(‘adminOverlay’).addEventListener(‘click’,function(e){ if(e.target===this) closeAdmin(); });
 
 /* ════════════════════════════════════════
-   OTP FORGOT PASSWORD
+OTP FORGOT PASSWORD
 ════════════════════════════════════════ */
-var generatedOtp='';
+var generatedOtp=’’;
 function showForgot(){
-  document.getElementById('pwGate').style.display='none';
-  document.getElementById('otpGate').style.display='flex';
-  document.getElementById('otpStep1').style.display='block';
-  document.getElementById('otpStep2').style.display='none';
-  document.getElementById('otpSendMsg').textContent='';
-  document.getElementById('otpInput').value='';
-  document.getElementById('otp_newpw').value='';
-  document.getElementById('otpErr').textContent='';
+document.getElementById(‘pwGate’).style.display=‘none’;
+document.getElementById(‘otpGate’).style.display=‘flex’;
+document.getElementById(‘otpStep1’).style.display=‘block’;
+document.getElementById(‘otpStep2’).style.display=‘none’;
+document.getElementById(‘otpSendMsg’).textContent=’’;
+document.getElementById(‘otpInput’).value=’’;
+document.getElementById(‘otp_newpw’).value=’’;
+document.getElementById(‘otpErr’).textContent=’’;
 }
-function closeOtpGate(){ document.getElementById('otpGate').style.display='none'; generatedOtp=''; }
+function closeOtpGate(){ document.getElementById(‘otpGate’).style.display=‘none’; generatedOtp=’’; }
 function sendOtp(){
-  generatedOtp = String(Math.floor(100000+Math.random()*900000));
-  var btn = document.querySelector('#otpStep1 button');
-  btn.textContent='Sending…'; btn.disabled=true;
-  fetch('https://www.fast2sms.com/dev/bulkV2?authorization=YOUR_FAST2SMS_API_KEY&variables_values='+generatedOtp+'&route=otp&numbers=7695861063',{method:'GET'})
-  .then(function(r){ return r.json(); })
-  .then(function(d){
-    btn.textContent='Send OTP →'; btn.disabled=false;
-    document.getElementById('otpSendMsg').textContent = d.return
-      ? '✓ OTP sent to +91 76958 61063'
-      : 'SMS not configured. Your OTP: '+generatedOtp;
-    setTimeout(function(){
-      document.getElementById('otpStep1').style.display='none';
-      document.getElementById('otpStep2').style.display='block';
-    },1800);
-  })
-  .catch(function(){
-    btn.textContent='Send OTP →'; btn.disabled=false;
-    document.getElementById('otpSendMsg').textContent='SMS not configured. Your OTP: '+generatedOtp;
-    setTimeout(function(){
-      document.getElementById('otpStep1').style.display='none';
-      document.getElementById('otpStep2').style.display='block';
-    },1800);
-  });
+generatedOtp = String(Math.floor(100000+Math.random()*900000));
+var btn = document.querySelector(’#otpStep1 button’);
+btn.textContent=‘Sending…’; btn.disabled=true;
+fetch(‘https://www.fast2sms.com/dev/bulkV2?authorization=YOUR_FAST2SMS_API_KEY&variables_values=’+generatedOtp+’&route=otp&numbers=7695861063’,{method:‘GET’})
+.then(function(r){ return r.json(); })
+.then(function(d){
+btn.textContent=‘Send OTP →’; btn.disabled=false;
+document.getElementById(‘otpSendMsg’).textContent = d.return
+? ‘✓ OTP sent to +91 76958 61063’
+: ’SMS not configured. Your OTP: ’+generatedOtp;
+setTimeout(function(){
+document.getElementById(‘otpStep1’).style.display=‘none’;
+document.getElementById(‘otpStep2’).style.display=‘block’;
+},1800);
+})
+.catch(function(){
+btn.textContent=‘Send OTP →’; btn.disabled=false;
+document.getElementById(‘otpSendMsg’).textContent=‘SMS not configured. Your OTP: ‘+generatedOtp;
+setTimeout(function(){
+document.getElementById(‘otpStep1’).style.display=‘none’;
+document.getElementById(‘otpStep2’).style.display=‘block’;
+},1800);
+});
 }
 function verifyOtp(){
-  var entered=document.getElementById('otpInput').value.trim();
-  var newpw=document.getElementById('otp_newpw').value;
-  if(entered!==generatedOtp){ document.getElementById('otpErr').textContent='Wrong OTP.'; return; }
-  if(!newpw||newpw.length<6){ document.getElementById('otpErr').textContent='Enter new password (min 6 chars).'; return; }
-  if(FB_CONFIGURED){
-    fbSet('pw', newpw, '✓ Password reset on all devices!');
-  } else {
-    LS.set('re_pw', newpw);
-    showToast('✓ Password reset!');
-  }
-  ADMIN_PW=newpw; generatedOtp='';
-  closeOtpGate();
+var entered=document.getElementById(‘otpInput’).value.trim();
+var newpw=document.getElementById(‘otp_newpw’).value;
+if(entered!==generatedOtp){ document.getElementById(‘otpErr’).textContent=‘Wrong OTP.’; return; }
+if(!newpw||newpw.length<6){ document.getElementById(‘otpErr’).textContent=‘Enter new password (min 6 chars).’; return; }
+if(FB_CONFIGURED){
+fbSet(‘pw’, newpw, ‘✓ Password reset on all devices!’);
+} else {
+LS.set(‘re_pw’, newpw);
+showToast(‘✓ Password reset!’);
+}
+ADMIN_PW=newpw; generatedOtp=’’;
+closeOtpGate();
 }
 
 /* ════════════════════════════════════════
-   INIT
+INIT
 ════════════════════════════════════════ */
 if(FB_CONFIGURED){
-  /* Firebase: listeners auto-load + update data live */
-  startListeners();
+/* Firebase: listeners auto-load + update data live */
+startListeners();
 } else {
-  /* Fallback: use localStorage */
-  ADMIN_PW    = LS.get('re_pw', DEFAULT_PW);
-  savedContact = LS.get('re_contact', DEFAULT_CONTACT);
-  savedBio     = LS.get('re_bio', DEFAULT_BIO);
-  products     = LS.get('re_products', DEFAULT_PRODUCTS);
-  applyContact();
-  applyBio();
-  renderProducts();
+/* Fallback: use localStorage */
+ADMIN_PW    = LS.get(‘re_pw’, DEFAULT_PW);
+savedContact = LS.get(‘re_contact’, DEFAULT_CONTACT);
+savedBio     = LS.get(‘re_bio’, DEFAULT_BIO);
+products     = LS.get(‘re_products’, DEFAULT_PRODUCTS);
+applyContact();
+applyBio();
+renderProducts();
 }
 </script>
+
 </body>
 </html>
