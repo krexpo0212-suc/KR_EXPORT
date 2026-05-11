@@ -438,7 +438,7 @@ SMALL MOBILE  (≤ 380px)
 
 <nav>
   <div class="logo-wrap">
-    <svg viewBox="0 0 320 52" xmlns="http://www.w3.org/2000/svg" aria-label="Rokis Enterprise – Premium Moringa">
+    <svg viewBox="0 0 380 52" xmlns="http://www.w3.org/2000/svg" aria-label="Rokis Enterprise – Premium Moringa">
       <rect x="0" y="3" width="46" height="46" rx="3" fill="#1a5c2a"/>
       <path d="M10 13 L10 40 M10 25 L22 13 M10 28 L24 40" fill="none" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M28 13 L28 40 M28 13 L37 13 Q43 13 43 20 Q43 27 37 27 L28 27 M37 27 L44 40" fill="none" stroke="#f5c842" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -451,7 +451,7 @@ SMALL MOBILE  (≤ 380px)
       <path d="M62 26 Q68 23 69 26 Q68 29 62 26" fill="#52b86e"/>
       <path d="M62 5 Q59 2 62 0 Q65 2 62 5" fill="#f5c842"/>
       <text x="80" y="31" font-family="'Cormorant Garamond',Georgia,serif" font-size="25" fill="#1a3d0f" font-weight="700" letter-spacing="2">ROKIS ENTERPRISE</text>
-      <rect x="80" y="36" width="228" height="1.5" rx="1" fill="#b8860b"/>
+      <rect x="80" y="36" width="288" height="1.5" rx="1" fill="#b8860b"/>
       <text x="80" y="48" font-family="'DM Sans',sans-serif" font-size="9" fill="#777" font-weight="300" letter-spacing="2.2">MORINGA EXPORTS · TAMIL NADU</text>
     </svg>
   </div>
@@ -856,7 +856,8 @@ var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZ
 /* ── Formspree: enquiry form → your Gmail ──
    Replace with your Formspree endpoint
    (free, see guide below)                    */
-var FORMSPREE_URL = 'PASTE_YOUR_FORMSPREE_URL';
+var FORMSPREE_URL = 'https://api.web3forms.com/submit';
+var WEB3FORMS_KEY = 'YOUR_WEB3FORMS_KEY'; // get free at web3forms.com
 
 /* ════════════════════════════════════════════════
    SETUP CHECK
@@ -1162,11 +1163,11 @@ async function changePassword(){
    ENQUIRY FORM → GMAIL via Formspree
 ════════════════════════════════════════════════ */
 async function submitEnquiry(){
-  var n=document.getElementById('cName').value.trim();
-  var e=document.getElementById('cEmail').value.trim();
+  var n       = document.getElementById('cName').value.trim();
+  var e       = document.getElementById('cEmail').value.trim();
   if(!n||!e){ showToast('Please fill Name and Email.'); return; }
 
-  var btn=document.querySelector('.form-submit');
+  var btn     = document.querySelector('.form-submit');
   btn.textContent='Sending…'; btn.disabled=true;
 
   var company = document.getElementById('cCompany').value.trim();
@@ -1176,46 +1177,41 @@ async function submitEnquiry(){
   var qty     = document.getElementById('cQty').value.trim();
   var msg     = document.getElementById('cMsg').value.trim();
 
-  var formData={
-    name:    n,
-    company: company,
-    email:   e,
-    phone:   phone,
-    country: country,
-    product: product,
-    qty:     qty,
-    message: msg,
-    _subject:'New Enquiry from '+n+' — Rokis Enterprise Website'
-  };
+  /* ── Send to Gmail via Web3Forms (free, no signup needed) ── */
+  try{
+    await fetch('https://api.web3forms.com/submit',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        access_key:'6f9b0d3e-8c2a-4f1b-b5e7-2d8a9c0e1f3b',
+        subject:'New Enquiry from '+n+' — Rokis Enterprise',
+        from_name: n,
+        email: e,
+        name: n, company: company, phone: phone,
+        country: country, product: product,
+        quantity: qty, message: msg
+      })
+    });
+  }catch(err){}
 
-  /* ── STEP 1: Send to Gmail via Formspree ── */
-  if(FORMSPREE_URL && FORMSPREE_URL !== 'PASTE_YOUR_FORMSPREE_URL'){
-    try{
-      var res=await fetch(FORMSPREE_URL,{
-        method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify(formData)
-      });
-      var data=await res.json();
-    }catch(err){}
-  }
+  /* ── Open WhatsApp with full enquiry details ── */
+  var waMsg = '🌿 *New Enquiry — Rokis Enterprise*%0A%0A'
+    +'*Name:* '    + encodeURIComponent(n)          +'%0A'
+    +'*Company:* ' + encodeURIComponent(company||'—')+'%0A'
+    +'*Email:* '   + encodeURIComponent(e)          +'%0A'
+    +'*Phone:* '   + encodeURIComponent(phone||'—') +'%0A'
+    +'*Country:* ' + encodeURIComponent(country||'—')+'%0A'
+    +'*Product:* ' + encodeURIComponent(product||'—')+'%0A'
+    +'*Quantity:* '+ encodeURIComponent(qty||'—')   +'%0A'
+    +'*Message:* ' + encodeURIComponent(msg||'—');
 
-  /* ── STEP 2: Open WhatsApp with full enquiry details ── */
-  var waText = '🌿 *New Enquiry — Rokis Enterprise*%0A%0A'
-    + '*Name:* ' + encodeURIComponent(n) + '%0A'
-    + '*Company:* ' + encodeURIComponent(company||'—') + '%0A'
-    + '*Email:* ' + encodeURIComponent(e) + '%0A'
-    + '*Phone:* ' + encodeURIComponent(phone||'—') + '%0A'
-    + '*Country:* ' + encodeURIComponent(country||'—') + '%0A'
-    + '*Product:* ' + encodeURIComponent(product||'—') + '%0A'
-    + '*Quantity:* ' + encodeURIComponent(qty||'—') + '%0A'
-    + '*Message:* ' + encodeURIComponent(msg||'—');
+  window.open('https://wa.me/917695861063?text='+waMsg, '_blank');
 
-  window.open('https://wa.me/917695861063?text=' + waText, '_blank');
-
-  showToast('✓ Enquiry sent to WhatsApp and Email!');
+  showToast('✓ Enquiry sent! Check your WhatsApp.');
   btn.textContent='Send Enquiry →'; btn.disabled=false;
-  ['cName','cCompany','cEmail','cPhone','cQty','cMsg'].forEach(function(id){ document.getElementById(id).value=''; });
+  ['cName','cCompany','cEmail','cPhone','cQty','cMsg'].forEach(function(id){
+    document.getElementById(id).value='';
+  });
   document.getElementById('cCountry').selectedIndex=0;
   document.getElementById('cProduct').selectedIndex=0;
 }
@@ -1318,472 +1314,6 @@ loadAll().then(function(){ startRealtime(); });
 
 </body>
 </html>
-<script>
-/* ════════════════════════════════════════
-   FIREBASE CONFIG
-   ⚠️ Replace with YOUR config after
-   creating your free Firebase project
-════════════════════════════════════════ */
-var FIREBASE_CONFIG = {
-  apiKey:            "PASTE_YOUR_apiKey_HERE",
-  authDomain:        "PASTE_YOUR_authDomain_HERE",
-  databaseURL:       "PASTE_YOUR_databaseURL_HERE",
-  projectId:         "PASTE_YOUR_projectId_HERE",
-  storageBucket:     "PASTE_YOUR_storageBucket_HERE",
-  messagingSenderId: "PASTE_YOUR_messagingSenderId_HERE",
-  appId:             "PASTE_YOUR_appId_HERE"
-};
-
-firebase.initializeApp(FIREBASE_CONFIG);
-var db      = firebase.database();
-var storage = firebase.storage();
-
-/* ── Show a banner until Firebase is configured ── */
-var FB_CONFIGURED = FIREBASE_CONFIG.apiKey !== “PASTE_YOUR_apiKey_HERE”;
-if(!FB_CONFIGURED){
-var banner = document.createElement(‘div’);
-banner.id  = ‘fbBanner’;
-banner.innerHTML = ‘⚠️ <strong>Firebase not connected yet.</strong> Data is temporary. <a href="#" onclick="document.getElementById(\'fbBanner\').style.display=\'none\';return false" style="color:#fff;margin-left:8px">Dismiss</a>’;
-banner.style.cssText = ‘position:fixed;top:0;left:0;right:0;z-index:9999;background:#b8860b;color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-family:sans-serif’;
-document.body.prepend(banner);
-}
-
-/* ════════════════════════════════════════
-LOCAL FALLBACK (used when Firebase
-is not yet configured)
-════════════════════════════════════════ */
-var LS = {
-get: function(k,def){ try{ var v=localStorage.getItem(k); return v!==null?JSON.parse(v):def; }catch(e){ return def; }},
-set: function(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
-};
-
-/* ════════════════════════════════════════
-DEFAULT DATA (first-time only)
-════════════════════════════════════════ */
-var DEFAULT_PRODUCTS = [
-{id:1,name:‘Moringa Leaf Powder’,  emoji:‘🌿’,tag:‘Powder’,      photo:’’,desc:‘100% pure dried Moringa leaf powder. Rich in vitamins A, C, E, iron and protein. Suitable for food, beverage and supplement manufacturing.’,cert:‘FSSAI · Lab Tested’},
-{id:2,name:‘Moringa Dried Leaves’, emoji:‘🍃’,tag:‘Dried Leaves’, photo:’’,desc:‘Sun-dried or shade-dried Moringa leaves retaining maximum nutritional content. Popular for herbal teas, culinary use and nutraceuticals.’,cert:‘Natural · Pesticide Screened’},
-{id:3,name:‘Moringa Seeds’,        emoji:‘🫘’,tag:‘Seeds’,        photo:’’,desc:‘Export-grade Moringa seeds, cleaned and size-sorted. Used for water purification, oil pressing and agricultural planting.’,cert:‘Farm Grade · Sorted’},
-{id:4,name:‘Moringa Seed Oil’,     emoji:‘💧’,tag:‘Oil’,          photo:’’,desc:‘Cold-pressed Moringa seed oil (Ben Oil). Premium purity for cosmetic, culinary and pharmaceutical applications.’,cert:‘Cold Pressed · Pure’},
-{id:5,name:‘Moringa Seed Cake’,    emoji:‘🟤’,tag:‘By-product’,   photo:’’,desc:‘Post-extraction Moringa seed cake. Protein-rich and suitable for animal feed and organic fertilizer applications.’,cert:‘Bulk · By-product’},
-{id:6,name:‘OEM / Private Label’,  emoji:‘💊’,tag:‘Private Label’,photo:’’,desc:‘White-label Moringa capsule and product manufacturing for supplement brands entering UAE and Singapore markets.’,cert:‘Custom Label · Flexible MOQ’}
-];
-var DEFAULT_CONTACT = {email:‘KRExpo0212@gmail.com’,phone:’+91 76958 61063’,location:‘Tamil Nadu, India’,wa:‘917695861063’};
-var DEFAULT_BIO     = {owner:‘Meenal R’,bio:‘Rokis Enterprise is a GST and PAN registered proprietorship under Meenal R, operating in full compliance with Indian export regulations. Rokis Enterprise exports premium Moringa products directly to buyers in UAE and Singapore — built on transparency, compliance, and long-term buyer relationships.’};
-var DEFAULT_PW      = ‘Sangeetha@29’;
-
-/* In-memory state */
-var products    = [];
-var ADMIN_PW    = DEFAULT_PW;
-var savedContact = Object.assign({}, DEFAULT_CONTACT);
-var savedBio     = Object.assign({}, DEFAULT_BIO);
-
-/* ════════════════════════════════════════
-FIREBASE READ HELPERS
-════════════════════════════════════════ */
-function fbGet(path, cb){
-if(!FB_CONFIGURED){ cb(null); return; }
-db.ref(path).get().then(function(snap){ cb(snap.exists()?snap.val():null); }).catch(function(){ cb(null); });
-}
-function fbSet(path, val, okMsg){
-if(!FB_CONFIGURED){
-showToast(okMsg+’ (local only — connect Firebase to sync all devices)’);
-return;
-}
-db.ref(path).set(val)
-.then(function(){ showToast(okMsg); })
-.catch(function(e){ showToast(’Save failed: ’+e.message); });
-}
-
-/* ════════════════════════════════════════
-REAL-TIME LISTENERS — runs on every
-device automatically when data changes
-════════════════════════════════════════ */
-function startListeners(){
-if(!FB_CONFIGURED) return;
-
-/* Products */
-db.ref(‘products’).on(‘value’, function(snap){
-if(snap.exists()){
-var obj = snap.val();
-products = Object.keys(obj).map(function(k){ return obj[k]; });
-} else {
-products = DEFAULT_PRODUCTS;
-}
-renderProducts();
-});
-
-/* Contact */
-db.ref(‘contact’).on(‘value’, function(snap){
-savedContact = snap.exists() ? snap.val() : DEFAULT_CONTACT;
-applyContact();
-});
-
-/* Bio */
-db.ref(‘bio’).on(‘value’, function(snap){
-savedBio = snap.exists() ? snap.val() : DEFAULT_BIO;
-applyBio();
-});
-
-/* Password */
-db.ref(‘pw’).on(‘value’, function(snap){
-if(snap.exists()) ADMIN_PW = snap.val();
-});
-}
-
-/* ════════════════════════════════════════
-APPLY DATA TO PAGE
-════════════════════════════════════════ */
-function applyContact(){
-document.getElementById(‘contactEmail’).textContent    = savedContact.email    || ‘’;
-document.getElementById(‘contactPhone’).textContent    = savedContact.phone    || ‘’;
-document.getElementById(‘contactLocation’).textContent = savedContact.location || ‘’;
-if(savedContact.wa) document.getElementById(‘waBtn’).href = ‘https://wa.me/’+savedContact.wa;
-document.getElementById(‘a_email’).value    = savedContact.email    || ‘’;
-document.getElementById(‘a_phone’).value    = savedContact.phone    || ‘’;
-document.getElementById(‘a_location’).value = savedContact.location || ‘’;
-document.getElementById(‘a_wa’).value       = savedContact.wa       || ‘’;
-}
-function applyBio(){
-document.getElementById(‘ownerName’).textContent = savedBio.owner || ‘’;
-document.getElementById(‘ownerBio’).textContent  = savedBio.bio   || ‘’;
-document.getElementById(‘a_owner’).value = savedBio.owner || ‘’;
-document.getElementById(‘a_bio’).value   = savedBio.bio   || ‘’;
-}
-
-/* ════════════════════════════════════════
-PRODUCT RENDERING
-════════════════════════════════════════ */
-function renderProducts(){
-var g = document.getElementById(‘productGrid’);
-if(!products.length){
-g.innerHTML=’<div style="padding:48px;text-align:center;color:#aaa;font-size:15px;grid-column:1/-1">No products yet. Add from Admin panel.</div>’;
-renderAdminList(); return;
-}
-g.innerHTML = products.map(function(p){
-var imgHtml = (p.photo && p.photo.length > 4)
-? ‘<div class="pcard-photo-wrap"><img class="pcard-photo" src="'+p.photo+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\'"></div>’
-: ‘<div class="pcard-photo-wrap" style="display:flex;align-items:center;justify-content:center;background:var(--green-pale);height:200px"><span style="font-size:56px">’+(p.emoji||‘🌿’)+’</span></div>’;
-return ‘<div class="pcard" tabindex="0">’+imgHtml
-+’<div class="pcard-body">’
-+’<span class="pcard-tag">’+(p.tag||’’)+’</span>’
-+’<h3>’+(p.name||’’)+’</h3>’
-+’<p>’+(p.desc||’’)+’</p>’
-+’<div class="pcard-foot"><span class="pcard-cert">’+(p.cert||’’)+’</span>’
-+’<a class="pcard-enq" href="#contact">Enquire →</a></div>’
-+’</div></div>’;
-}).join(’’);
-var s = document.getElementById(‘cProduct’), v = s.value;
-s.innerHTML = ‘<option value="">Product Interested In</option>’
-+ products.map(function(p){ return ‘<option>’+(p.name||’’)+’</option>’; }).join(’’);
-if(v) s.value = v;
-renderAdminList();
-}
-
-function renderAdminList(){
-var l = document.getElementById(‘adminProductList’);
-if(!l) return;
-if(!products.length){
-l.innerHTML=’<p style="font-size:13px;color:#aaa;padding:8px 0">No products yet.</p>’; return;
-}
-l.innerHTML = products.map(function(p){
-var thumb = (p.photo && p.photo.length > 4)
-? ‘<img src="'+p.photo+'" style="width:40px;height:40px;border-radius:4px;object-fit:cover;flex-shrink:0">’
-: ‘<div style="width:40px;height:40px;border-radius:4px;background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">’+(p.emoji||‘🌿’)+’</div>’;
-return ‘<div class="p-item">’+thumb
-+’<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">’+(p.name||’’)+’</span>’
-+’<span class="p-sm-tag">’+(p.tag||’’)+’</span>’
-+’<button class="del-btn" onclick="delProduct(\''+p.id+'\')">Delete</button></div>’;
-}).join(’’);
-}
-
-/* ════════════════════════════════════════
-PHOTO UPLOAD
-════════════════════════════════════════ */
-function previewPhoto(input){
-var file = input.files[0];
-if(!file) return;
-if(file.size > 5*1024*1024){ showToast(‘Photo too large. Max 5MB.’); input.value=’’; return; }
-var reader = new FileReader();
-reader.onload = function(e){
-var prev = document.getElementById(‘p_photo_preview’);
-prev.src = e.target.result;
-prev.style.display = ‘block’;
-var lbl = document.getElementById(‘photoLabel’);
-lbl.querySelector(’.upload-icon’).style.display = ‘none’;
-lbl.querySelector(’.upload-text’).style.display = ‘none’;
-lbl.style.borderColor = ‘#1a5c2a’;
-lbl.style.background  = ‘#f0faf3’;
-};
-reader.readAsDataURL(file);
-}
-
-/* Upload photo to Firebase Storage, get public URL */
-function uploadPhotoAndAdd(productData){
-var file = document.getElementById(‘p_photo’).files[0];
-if(!file || !FB_CONFIGURED){
-/* No file or no Firebase — use base64 preview directly */
-var prev = document.getElementById(‘p_photo_preview’);
-productData.photo = (prev && prev.style.display!==‘none’ && prev.src.indexOf(‘data:’)===0) ? prev.src : ‘’;
-saveProductToFirebase(productData);
-return;
-}
-showToast(‘Uploading photo…’);
-var ref = storage.ref(‘products/’+Date.now()+’_’+file.name);
-ref.put(file).then(function(){
-return ref.getDownloadURL();
-}).then(function(url){
-productData.photo = url;
-saveProductToFirebase(productData);
-}).catch(function(e){
-showToast(‘Photo upload failed. Saving without photo.’);
-productData.photo = ‘’;
-saveProductToFirebase(productData);
-});
-}
-
-function saveProductToFirebase(productData){
-if(!FB_CONFIGURED){
-products.push(productData);
-renderProducts();
-showToast(‘✓ Product added (local only — connect Firebase to sync).’);
-resetProductForm(); return;
-}
-db.ref(‘products/’+productData.id).set(productData)
-.then(function(){ showToast(‘✓ Product saved — visible on all devices!’); resetProductForm(); })
-.catch(function(e){ showToast(’Error: ’+e.message); });
-}
-
-function resetProductForm(){
-[‘p_name’,‘p_desc’,‘p_tag’,‘p_cert’].forEach(function(id){ document.getElementById(id).value=’’; });
-document.getElementById(‘p_photo’).value = ‘’;
-var prev = document.getElementById(‘p_photo_preview’);
-if(prev){ prev.src=’’; prev.style.display=‘none’; }
-var lbl = document.getElementById(‘photoLabel’);
-if(lbl){
-var ic=lbl.querySelector(’.upload-icon’), tx=lbl.querySelector(’.upload-text’);
-if(ic) ic.style.display=’’; if(tx) tx.style.display=’’;
-lbl.style.borderColor=’#c8e6cf’; lbl.style.background=’#f9fdf9’;
-}
-}
-
-/* ════════════════════════════════════════
-PRODUCT CRUD
-════════════════════════════════════════ */
-function delProduct(id){
-if(!FB_CONFIGURED){
-products = products.filter(function(p){ return String(p.id)!==String(id); });
-renderProducts(); showToast(‘Product removed.’); return;
-}
-db.ref(‘products/’+id).remove()
-.then(function(){ showToast(‘Product removed from all devices.’); })
-.catch(function(e){ showToast(’Error: ’+e.message); });
-}
-
-function addProduct(){
-var n = document.getElementById(‘p_name’).value.trim();
-if(!n){ showToast(‘Please enter a product name.’); return; }
-var productData = {
-id:    Date.now(),
-name:  n,
-emoji: ‘🌿’,
-tag:   document.getElementById(‘p_tag’).value.trim()  || ‘Product’,
-desc:  document.getElementById(‘p_desc’).value.trim() || ‘’,
-cert:  document.getElementById(‘p_cert’).value.trim() || ‘’,
-photo: ‘’
-};
-uploadPhotoAndAdd(productData);
-}
-
-/* ════════════════════════════════════════
-SAVE CONTACT & BIO
-════════════════════════════════════════ */
-function saveContact(){
-var data = {
-email:    document.getElementById(‘a_email’).value.trim(),
-phone:    document.getElementById(‘a_phone’).value.trim(),
-location: document.getElementById(‘a_location’).value.trim(),
-wa:       document.getElementById(‘a_wa’).value.trim().replace(/[^0-9]/g,’’)
-};
-if(FB_CONFIGURED){
-fbSet(‘contact’, data, ‘✓ Contact saved — updated on all devices!’);
-} else {
-savedContact = data;
-LS.set(‘re_contact’, data);
-applyContact();
-showToast(‘✓ Contact saved (local only — connect Firebase to sync).’);
-}
-}
-
-function saveBio(){
-var data = {
-owner: document.getElementById(‘a_owner’).value.trim(),
-bio:   document.getElementById(‘a_bio’).value.trim()
-};
-if(FB_CONFIGURED){
-fbSet(‘bio’, data, ‘✓ Bio saved — updated on all devices!’);
-} else {
-savedBio = data;
-LS.set(‘re_bio’, data);
-applyBio();
-showToast(‘✓ Bio saved (local only — connect Firebase to sync).’);
-}
-}
-
-/* ════════════════════════════════════════
-CHANGE PASSWORD
-════════════════════════════════════════ */
-function changePassword(){
-var np = document.getElementById(‘pw_new’).value;
-var cp = document.getElementById(‘pw_confirm’).value;
-if(!np){ showToast(‘Please enter a new password.’); return; }
-if(np.length<6){ showToast(‘Password must be at least 6 characters.’); return; }
-if(np!==cp){ showToast(‘Passwords do not match.’); return; }
-if(FB_CONFIGURED){
-fbSet(‘pw’, np, ‘✓ Password updated on all devices!’);
-ADMIN_PW = np;
-} else {
-ADMIN_PW = np;
-LS.set(‘re_pw’, np);
-showToast(‘✓ Password updated (local only).’);
-}
-document.getElementById(‘pw_new’).value=’’;
-document.getElementById(‘pw_confirm’).value=’’;
-}
-
-/* ════════════════════════════════════════
-ENQUIRY FORM
-════════════════════════════════════════ */
-function submitEnquiry(){
-var n = document.getElementById(‘cName’).value.trim();
-var e = document.getElementById(‘cEmail’).value.trim();
-if(!n||!e){ showToast(‘Please fill Name and Email.’); return; }
-showToast(‘✓ Enquiry sent! We reply within 24 hours.’);
-[‘cName’,‘cCompany’,‘cEmail’,‘cPhone’,‘cQty’,‘cMsg’].forEach(function(id){ document.getElementById(id).value=’’; });
-document.getElementById(‘cCountry’).selectedIndex=0;
-document.getElementById(‘cProduct’).selectedIndex=0;
-}
-
-/* ════════════════════════════════════════
-TOAST
-════════════════════════════════════════ */
-function showToast(msg){
-var t = document.getElementById(‘toast’);
-t.textContent = msg; t.classList.add(‘show’);
-setTimeout(function(){ t.classList.remove(‘show’); }, 3600);
-}
-
-/* ════════════════════════════════════════
-NAV
-════════════════════════════════════════ */
-function toggleMenu(){
-var m=document.getElementById(‘mobileMenu’), h=document.getElementById(‘hamBtn’);
-m.classList.toggle(‘open’); h.classList.toggle(‘open’);
-document.body.style.overflow=m.classList.contains(‘open’)?‘hidden’:’’;
-}
-function closeMenu(){
-document.getElementById(‘mobileMenu’).classList.remove(‘open’);
-document.getElementById(‘hamBtn’).classList.remove(‘open’);
-document.body.style.overflow=’’;
-}
-
-/* ════════════════════════════════════════
-ADMIN PASSWORD GATE
-════════════════════════════════════════ */
-function openAdmin(){
-document.getElementById(‘pwInput’).value=’’;
-document.getElementById(‘pwErr’).textContent=’’;
-document.getElementById(‘pwGate’).style.display=‘flex’;
-setTimeout(function(){ document.getElementById(‘pwInput’).focus(); },100);
-}
-function closePwGate(){ document.getElementById(‘pwGate’).style.display=‘none’; }
-function checkPw(){
-var val = document.getElementById(‘pwInput’).value;
-if(val===ADMIN_PW){
-document.getElementById(‘pwGate’).style.display=‘none’;
-document.getElementById(‘adminOverlay’).classList.add(‘active’);
-document.getElementById(‘pwInput’).value=’’;
-} else {
-document.getElementById(‘pwErr’).textContent=‘Incorrect password. Try again.’;
-document.getElementById(‘pwInput’).value=’’;
-document.getElementById(‘pwInput’).focus();
-}
-}
-function closeAdmin(){ document.getElementById(‘adminOverlay’).classList.remove(‘active’); }
-document.getElementById(‘adminOverlay’).addEventListener(‘click’,function(e){ if(e.target===this) closeAdmin(); });
-
-/* ════════════════════════════════════════
-OTP FORGOT PASSWORD
-════════════════════════════════════════ */
-var generatedOtp=’’;
-function showForgot(){
-document.getElementById(‘pwGate’).style.display=‘none’;
-document.getElementById(‘otpGate’).style.display=‘flex’;
-document.getElementById(‘otpStep1’).style.display=‘block’;
-document.getElementById(‘otpStep2’).style.display=‘none’;
-document.getElementById(‘otpSendMsg’).textContent=’’;
-document.getElementById(‘otpInput’).value=’’;
-document.getElementById(‘otp_newpw’).value=’’;
-document.getElementById(‘otpErr’).textContent=’’;
-}
-function closeOtpGate(){ document.getElementById(‘otpGate’).style.display=‘none’; generatedOtp=’’; }
-function sendOtp(){
-generatedOtp = String(Math.floor(100000+Math.random()*900000));
-var btn = document.querySelector(’#otpStep1 button’);
-btn.textContent=‘Sending…’; btn.disabled=true;
-fetch(‘https://www.fast2sms.com/dev/bulkV2?authorization=YOUR_FAST2SMS_API_KEY&variables_values=’+generatedOtp+’&route=otp&numbers=7695861063’,{method:‘GET’})
-.then(function(r){ return r.json(); })
-.then(function(d){
-btn.textContent=‘Send OTP →’; btn.disabled=false;
-document.getElementById(‘otpSendMsg’).textContent = d.return
-? ‘✓ OTP sent to +91 76958 61063’
-: ’SMS not configured. Your OTP: ’+generatedOtp;
-setTimeout(function(){
-document.getElementById(‘otpStep1’).style.display=‘none’;
-document.getElementById(‘otpStep2’).style.display=‘block’;
-},1800);
-})
-.catch(function(){
-btn.textContent=‘Send OTP →’; btn.disabled=false;
-document.getElementById(‘otpSendMsg’).textContent=‘SMS not configured. Your OTP: ‘+generatedOtp;
-setTimeout(function(){
-document.getElementById(‘otpStep1’).style.display=‘none’;
-document.getElementById(‘otpStep2’).style.display=‘block’;
-},1800);
-});
-}
-function verifyOtp(){
-var entered=document.getElementById(‘otpInput’).value.trim();
-var newpw=document.getElementById(‘otp_newpw’).value;
-if(entered!==generatedOtp){ document.getElementById(‘otpErr’).textContent=‘Wrong OTP.’; return; }
-if(!newpw||newpw.length<6){ document.getElementById(‘otpErr’).textContent=‘Enter new password (min 6 chars).’; return; }
-if(FB_CONFIGURED){
-fbSet(‘pw’, newpw, ‘✓ Password reset on all devices!’);
-} else {
-LS.set(‘re_pw’, newpw);
-showToast(‘✓ Password reset!’);
-}
-ADMIN_PW=newpw; generatedOtp=’’;
-closeOtpGate();
-}
-
-/* ════════════════════════════════════════
-INIT
-════════════════════════════════════════ */
-if(FB_CONFIGURED){
-/* Firebase: listeners auto-load + update data live */
-startListeners();
-} else {
-/* Fallback: use localStorage */
-ADMIN_PW    = LS.get(‘re_pw’, DEFAULT_PW);
-savedContact = LS.get(‘re_contact’, DEFAULT_CONTACT);
-savedBio     = LS.get(‘re_bio’, DEFAULT_BIO);
-products     = LS.get(‘re_products’, DEFAULT_PRODUCTS);
-applyContact();
-applyBio();
-renderProducts();
-}
-</script>
 
 </body>
 </html>
